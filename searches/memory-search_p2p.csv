@@ -1,0 +1,14 @@
+Location,Match Bytes,Match Value,Label,Code Unit
+04b6ad2c,50 32 50,P2P,,?? 50h    P
+04bdf890,50 32 50,P2P,,?? 50h    P
+0460576e,70 32 70,p2p,,?? 70h    p
+046326bb,70 32 70,p2p,,?? 70h    p
+0463307b,70 32 70,p2p,,?? 70h    p
+04634b74,70 32 70,p2p,,?? 70h    p
+046374e9,70 32 70,p2p,,?? 70h    p
+04637e3a,70 32 70,p2p,,?? 70h    p
+0463c82a,70 32 70,p2p,,?? 70h    p
+046d3254,70 32 70,p2p,,?? 70h    p
+04b6ad34,70 32 50,p2P,,?? 70h    p
+04452f10,50 32 70,P2p,,"ds ""CloseParticipationJob::WaitP2pStable"""
+04410a23,70 32 70,p2p,,"ds ""D:\\home\\ead-p2p\\Env\\Lib\\NintendoSDK\\NintendoSDK-NEX\\NintendoSDK-NEX-for_NX-4_6_3-S820-20190417-ja\\NintendoSDK-NEX\\Include\\OnlineCore/src/Core/InstanceTable.h"""

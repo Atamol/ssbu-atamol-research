@@ -1,0 +1,83 @@
+// addr:      002222d0
+// offset:    0x2222d0
+// name:      FUN_002222d0
+// mangled:   
+// size:      308
+
+002222d0  sub sp,sp,#0x70
+002222d4  str x21,[sp, #0x40]
+002222d8  stp x20,x19,[sp, #0x50]
+002222dc  stp x29,x30,[sp, #0x60]
+002222e0  add x29,sp,#0x60
+002222e4  adrp x8,0x52a3000
+002222e8  ldr x8,[x8, #0xda8]
+002222ec  adrp x21,0x52a3000
+002222f0  ldrb w8,[x8]
+002222f4  ldr x21,[x21, #0xdb0]
+002222f8  mov x19,x0
+002222fc  add x20,x21,#0x28
+00222300  cbz w8,0x0022233c
+00222304  adrp x8,0x52a3000
+00222308  ldr x8,[x8, #0xdb8]
+0022230c  ldr x0,[x8]
+00222310  bl 0x01717c00
+00222314  ldr w8,[x0]
+00222318  cbz w8,0x0022233c
+0022231c  ldr x10,[x21, #0xa0]
+00222320  ldp x9,x10,[x10]
+00222324  sub x10,x10,x9
+00222328  asr x10,x10,#0x3
+0022232c  cmp x10,x8
+00222330  b.ls 0x002223ec
+00222334  ldr x8,[x9, x8, LSL #0x3]
+00222338  add x20,x8,#0x20
+0022233c  ldr x8,[x20]
+00222340  ldr x8,[x8, #0x10]
+00222344  ldr x0,[x8, #0x18]
+00222348  ldr w1,[x19, #0xa0]
+0022234c  bl 0x001cd8d0
+00222350  cbz x0,0x002223ac
+00222354  add x8,sp,#0x28
+00222358  mov x0,x19
+0022235c  bl 0x00222410
+00222360  adrp x8,0x52a4000
+00222364  ldr x8,[x8, #0x110]
+00222368  ldr w9,[sp, #0x28]
+0022236c  cmp w9,#0x0
+00222370  csel x8,x8,xzr,ge
+00222374  cbz x8,0x002223cc
+00222378  adrp x8,0x52a5000
+0022237c  ldr x8,[x8, #0xc28]
+00222380  adrp x9,0x52a6000
+00222384  ldr x9,[x9, #0x448]
+00222388  add x1,sp,#0x8
+0022238c  add x8,x8,#0x10
+00222390  stp x8,x9,[sp, #0x8]
+00222394  adrp x8,0x4410000
+00222398  add x8,x8,#0x4cc
+0022239c  mov x0,x19
+002223a0  stp xzr,x8,[sp, #0x18]
+002223a4  bl 0x001d3e60
+002223a8  b 0x002223d8
+002223ac  mov w8,#0x4
+002223b0  movk w8,#0x8001, LSL #16
+002223b4  add x0,sp,#0x8
+002223b8  add x1,sp,#0x28
+002223bc  str w8,[sp, #0x28]
+002223c0  bl 0x001b4300
+002223c4  add x1,sp,#0x8
+002223c8  b 0x002223d0
+002223cc  add x1,sp,#0x28
+002223d0  mov x0,x19
+002223d4  bl 0x002228f0
+002223d8  ldp x29,x30,[sp, #0x60]
+002223dc  ldr x21,[sp, #0x40]
+002223e0  ldp x20,x19,[sp, #0x50]
+002223e4  add sp,sp,#0x70
+002223e8  ret
+002223ec  adrp x0,0x42c3000
+002223f0  add x0,x0,#0x35f
+002223f4  mov w1,#0x47
+002223f8  orr w2,wzr,#0xe0000003
+002223fc  mov w3,wzr
+00222400  bl 0x001b1400

@@ -1,0 +1,22 @@
+Location,Match Bytes,Match Value,Label,Code Unit
+042c3bbc,67 73 70,gsp,,?? 67h    g
+042f776d,67 73 70,gsp,,?? 67h    g
+04432591,67 73 70,gsp,,?? 67h    g
+045ca369,67 73 50,gsP,,?? 67h    g
+0441178f,67 73 70,gsp,,"ds ""countfinish_gsp"""
+0426ede6,67 73 70,gsp,,"ds ""countstop_gsp"""
+0435a4bf,67 73 70,gsp,,"ds ""countup_gsp"""
+043bb4b5,67 73 70,gsp,,"ds ""get_round_gsp"""
+0433703a,67 73 70,gsp,s_get_total_gsp_04337030,"ds ""get_total_gsp"""
+042d56cc,67 73 70,gsp,,"ds ""gsp_arrow"""
+043efd9b,67 73 70,gsp,,"ds ""gsp_down"""
+042909e6,67 73 70,gsp,,"ds ""gsp_icon_onoff"""
+04328dae,67 73 70,gsp,,"ds ""gsp_onoff"""
+043497c2,67 73 70,gsp,,"ds ""gsp_type"""
+0440f697,67 73 70,gsp,,"ds ""is_visible_gsp_in_result"""
+042e5e92,67 73 70,gsp,,"ds ""set_gsp_icon"""
+0438b7ad,67 73 70,gsp,,"ds ""set_parts_gsp"""
+04440945,67 73 70,gsp,,"ds ""set_round_gsp"""
+04389a7f,67 73 70,gsp,,"ds ""set_total_gsp"""
+0442115f,67 73 70,gsp,,"ds ""set_txt_gsp"""
+043ac5ad,67 73 70,gsp,,"ds ""set_txt_gsp_count"""

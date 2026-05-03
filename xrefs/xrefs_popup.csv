@@ -1,0 +1,3 @@
+Location,Match Value,Depth,Terminal,Ref Type,Operand Index,From Address,From Offset,From Code Unit,Function Address,Function Offset,Function Name,Function Symbol,Function Demangled,Function Namespace,Function Signature,Function Size,Function Basic Blocks,Function Incoming Refs,Function Decompile Path,Function CFG Path,Function Clone Hash,Function Fingerprint,Function Referenced By,Path
+0440ff72,POPUP,1,0,DATA,0,03eaf920,0x3eaf920,addr 0440ff72,,,,,,,,0,0,0,,,,,,0440ff72 -> 03eaf920
+0440ff72,POPUP,1,0,DATA,0,03eafab8,0x3eafab8,addr 0440ff72,,,,,,,,0,0,0,,,,,,0440ff72 -> 03eafab8

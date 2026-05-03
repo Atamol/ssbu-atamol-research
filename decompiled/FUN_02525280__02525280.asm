@@ -1,0 +1,73 @@
+// addr:      02525280
+// offset:    0x2525280
+// name:      FUN_02525280
+// mangled:   
+// size:      268
+
+02525280  stp x29,x30,[sp, #-0x10]!
+02525284  mov x29,sp
+02525288  ldrb w9,[x0, #0x2]
+0252528c  ldrb w8,[x1, #0x2]
+02525290  cbz w9,0x025252a4
+02525294  cbnz w8,0x025252b4
+02525298  mov w0,#0x1
+0252529c  ldp x29,x30,[sp], #0x10
+025252a0  ret
+025252a4  cbz w8,0x025252b4
+025252a8  mov w0,wzr
+025252ac  ldp x29,x30,[sp], #0x10
+025252b0  ret
+025252b4  adrp x9,0x532e000
+025252b8  ldr x9,[x9, #0x730]
+025252bc  ldr x9,[x9, #0x8]
+025252c0  ldrsh w11,[x0]
+025252c4  ldrsh x8,[x1]
+025252c8  cmn w11,#0x1
+025252cc  ldr x10,[x9, #0x1d8]
+025252d0  orr w9,wzr,#0xffff
+025252d4  b.eq 0x02525324
+025252d8  cmp w11,#0x7cf
+025252dc  b.gt 0x02525324
+025252e0  ldp x13,x14,[x10, #0x20]
+025252e4  sxtw x11,w11
+025252e8  add x9,x10,x11, LSL #0x1
+025252ec  ldrh w12,[x9, #0x60]
+025252f0  sub x13,x14,x13
+025252f4  mov w14,#0xcccd
+025252f8  movk w14,#0xcccc, LSL #16
+025252fc  lsr x13,x13,#0x6
+02525300  mul w13,w13,w14
+02525304  cmp w13,w12
+02525308  b.ls 0x02525320
+0252530c  and w11,w11,#0xffff
+02525310  cmp w11,#0x7d0
+02525314  b.cs 0x02525388
+02525318  ldrh w9,[x9, #0x1fa0]
+0252531c  b 0x02525324
+02525320  orr w9,wzr,#0xffff
+02525324  orr w11,wzr,#0xffff
+02525328  cmn w8,#0x1
+0252532c  b.eq 0x02525378
+02525330  cmp w8,#0x7cf
+02525334  b.gt 0x02525378
+02525338  add x11,x10,x8, LSL #0x1
+0252533c  ldp x13,x10,[x10, #0x20]
+02525340  ldrh w12,[x11, #0x60]
+02525344  sub x10,x10,x13
+02525348  mov w13,#0xcccd
+0252534c  movk w13,#0xcccc, LSL #16
+02525350  lsr x10,x10,#0x6
+02525354  mul w10,w10,w13
+02525358  cmp w10,w12
+0252535c  b.ls 0x02525374
+02525360  and w8,w8,#0xffff
+02525364  cmp w8,#0x7d0
+02525368  b.cs 0x02525388
+0252536c  ldrh w11,[x11, #0x1fa0]
+02525370  b 0x02525378
+02525374  orr w11,wzr,#0xffff
+02525378  cmp w9,w11
+0252537c  cset w0,cc
+02525380  ldp x29,x30,[sp], #0x10
+02525384  ret
+02525388  bl 0x039c21a0

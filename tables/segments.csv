@@ -1,0 +1,2 @@
+Block Name,Start,End,Size,Read,Write,Execute,Initialized,Source
+ram,00000000,052a866f,86673008,1,1,1,1,Binary Loader

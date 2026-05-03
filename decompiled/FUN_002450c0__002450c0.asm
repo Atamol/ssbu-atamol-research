@@ -1,0 +1,88 @@
+// addr:      002450c0
+// offset:    0x2450c0
+// name:      FUN_002450c0
+// mangled:   
+// size:      328
+
+002450c0  sub sp,sp,#0x50
+002450c4  stp x22,x21,[sp, #0x20]
+002450c8  stp x20,x19,[sp, #0x30]
+002450cc  stp x29,x30,[sp, #0x40]
+002450d0  add x29,sp,#0x40
+002450d4  adrp x8,0x52a4000
+002450d8  ldr x8,[x8, #0xda8]
+002450dc  adrp x22,0x52a4000
+002450e0  ldrb w8,[x8]
+002450e4  ldr x22,[x22, #0xdb0]
+002450e8  mov x19,x1
+002450ec  mov x20,x0
+002450f0  add x21,x22,#0x28
+002450f4  cbz w8,0x00245130
+002450f8  adrp x8,0x52a4000
+002450fc  ldr x8,[x8, #0xdb8]
+00245100  ldr x0,[x8]
+00245104  bl 0x01717c00
+00245108  ldr w8,[x0]
+0024510c  cbz w8,0x00245130
+00245110  ldr x10,[x22, #0xa0]
+00245114  ldp x9,x10,[x10]
+00245118  sub x10,x10,x9
+0024511c  asr x10,x10,#0x3
+00245120  cmp x10,x8
+00245124  b.ls 0x00245148
+00245128  ldr x8,[x9, x8, LSL #0x3]
+0024512c  add x21,x8,#0x20
+00245130  ldr x8,[x21]
+00245134  cbz x8,0x00245160
+00245138  ldr x8,[x8, #0x10]
+0024513c  cbz x8,0x00245160
+00245140  ldr x21,[x8, #0x10]
+00245144  b 0x00245164
+00245148  adrp x0,0x42c3000
+0024514c  add x0,x0,#0x35f
+00245150  mov w1,#0x47
+00245154  orr w2,wzr,#0xe0000003
+00245158  mov w3,wzr
+0024515c  bl 0x001b1400
+00245160  mov x21,xzr
+00245164  ldr x8,[x21, #0x78]!
+00245168  ldr x8,[x8, #0x10]
+0024516c  mov x0,x21
+00245170  blr x8
+00245174  ldr x20,[x20, #0x88]
+00245178  cbz x20,0x002451e4
+0024517c  ldr x0,[x20, #0xc0]
+00245180  mov x1,xzr
+00245184  bl 0x001e1780
+00245188  ldr x0,[x20, #0xc0]
+0024518c  mov w1,wzr
+00245190  bl 0x001e1720
+00245194  mov x0,x20
+00245198  mov x1,xzr
+0024519c  bl 0x001e1780
+002451a0  mov x0,x20
+002451a4  mov w1,wzr
+002451a8  bl 0x001e1720
+002451ac  ldr x8,[x20, #0xc0]
+002451b0  str xzr,[x8, #0x88]
+002451b4  ldr x0,[x20, #0xc0]
+002451b8  bl 0x001dffe0
+002451bc  ldr x8,[x20, #0xc8]
+002451c0  stp xzr,xzr,[x20, #0xc0]
+002451c4  ldp x9,x10,[x19]
+002451c8  ldr x11,[x19, #0x10]
+002451cc  add x2,x20,#0xd0
+002451d0  add x1,sp,#0x8
+002451d4  mov x0,x20
+002451d8  stp x10,x11,[sp, #0x10]
+002451dc  str x9,[sp, #0x8]
+002451e0  blr x8
+002451e4  ldr x8,[x21]
+002451e8  ldr x8,[x8, #0x20]
+002451ec  mov x0,x21
+002451f0  blr x8
+002451f4  ldp x29,x30,[sp, #0x40]
+002451f8  ldp x20,x19,[sp, #0x30]
+002451fc  ldp x22,x21,[sp, #0x20]
+00245200  add sp,sp,#0x50
+00245204  ret

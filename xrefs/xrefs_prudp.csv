@@ -1,0 +1,4 @@
+Location,Match Value,Depth,Terminal,Ref Type,Operand Index,From Address,From Offset,From Code Unit,Function Address,Function Offset,Function Name,Function Symbol,Function Demangled,Function Namespace,Function Signature,Function Size,Function Basic Blocks,Function Incoming Refs,Function Decompile Path,Function CFG Path,Function Clone Hash,Function Fingerprint,Function Referenced By,Path
+04420934,PRUDP,1,0,DATA,0,03cb1638,0x3cb1638,addr 04420934,,,,,,,,0,0,0,,,,,,04420934 -> 03cb1638
+0437adc7,prudp,1,0,DATA,0,03cafbb0,0x3cafbb0,addr 0437adc7,,,,,,,,0,0,0,,,,,,0437adc7 -> 03cafbb0
+042d48e6,prudp,1,0,DATA,0,03cb1d88,0x3cb1d88,addr 042d48e6,,,,,,,,0,0,0,,,,,,042d48e6 -> 03cb1d88

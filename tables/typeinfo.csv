@@ -1,0 +1,3 @@
+Address,Kind,Class,Mangled,Vtable Address,Notes
+03735a50,typeinfo_name,std::bad_function_call,_ZTSNSt3__117bad_function_callE,,
+03735fd0,typeinfo,_ZTINSt3__117bad_function_callE,_ZTINSt3__117bad_function_callE,,

@@ -1,0 +1,83 @@
+// addr:      002808a0
+// offset:    0x2808a0
+// name:      FUN_002808a0
+// mangled:   
+// size:      308
+
+002808a0  sub sp,sp,#0x80
+002808a4  stp x22,x21,[sp, #0x50]
+002808a8  stp x20,x19,[sp, #0x60]
+002808ac  stp x29,x30,[sp, #0x70]
+002808b0  add x29,sp,#0x70
+002808b4  adrp x8,0x52a3000
+002808b8  ldr x8,[x8, #0xda8]
+002808bc  adrp x22,0x52a3000
+002808c0  ldrb w8,[x8]
+002808c4  ldr x22,[x22, #0xdb0]
+002808c8  mov x20,x1
+002808cc  mov x19,x0
+002808d0  add x21,x22,#0x28
+002808d4  cbz w8,0x00280910
+002808d8  adrp x8,0x52a3000
+002808dc  ldr x8,[x8, #0xdb8]
+002808e0  ldr x0,[x8]
+002808e4  bl 0x01717c00
+002808e8  ldr w8,[x0]
+002808ec  cbz w8,0x00280910
+002808f0  ldr x10,[x22, #0xa0]
+002808f4  ldp x9,x10,[x10]
+002808f8  sub x10,x10,x9
+002808fc  asr x10,x10,#0x3
+00280900  cmp x10,x8
+00280904  b.ls 0x002809bc
+00280908  ldr x8,[x9, x8, LSL #0x3]
+0028090c  add x21,x8,#0x20
+00280910  ldr x8,[x21]
+00280914  ldr x8,[x8, #0x10]
+00280918  ldr x0,[x8, #0x18]
+0028091c  ldr w1,[x19, #0xa0]
+00280920  bl 0x001cd8d0
+00280924  cbz x0,0x00280964
+00280928  adrp x8,0x52a4000
+0028092c  ldr x8,[x8, #0x110]
+00280930  ldr w9,[x20]
+00280934  cmp w9,#0x0
+00280938  csel x8,x8,xzr,ge
+0028093c  cbz x8,0x00280970
+00280940  ldp x8,x9,[x20]
+00280944  ldr x10,[x20, #0x10]
+00280948  str x8,[sp, #0x20]
+0028094c  mov x8,x10
+00280950  mov w1,#0x2
+00280954  stp x9,x10,[sp, #0x28]
+00280958  stp x9,x8,[sp, #0x40]
+0028095c  ldr x8,[sp, #0x20]
+00280960  b 0x00280990
+00280964  add x0,x19,#0xf8
+00280968  bl 0x001d0b10
+0028096c  b 0x002809a0
+00280970  ldp x8,x9,[x20]
+00280974  ldr x10,[x20, #0x10]
+00280978  str x8,[sp, #0x8]
+0028097c  mov x8,x10
+00280980  orr w1,wzr,#0x3
+00280984  stp x9,x10,[sp, #0x10]
+00280988  stp x9,x8,[sp, #0x40]
+0028098c  ldr x8,[sp, #0x8]
+00280990  str x8,[sp, #0x38]
+00280994  add x2,sp,#0x38
+00280998  mov w3,#0x1
+0028099c  bl 0x001d1000
+002809a0  mov x0,x19
+002809a4  bl 0x001cd970
+002809a8  ldp x29,x30,[sp, #0x70]
+002809ac  ldp x20,x19,[sp, #0x60]
+002809b0  ldp x22,x21,[sp, #0x50]
+002809b4  add sp,sp,#0x80
+002809b8  ret
+002809bc  adrp x0,0x42c3000
+002809c0  add x0,x0,#0x35f
+002809c4  mov w1,#0x47
+002809c8  orr w2,wzr,#0xe0000003
+002809cc  mov w3,wzr
+002809d0  bl 0x001b1400

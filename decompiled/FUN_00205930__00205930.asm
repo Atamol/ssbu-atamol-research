@@ -1,0 +1,89 @@
+// addr:      00205930
+// offset:    0x205930
+// name:      FUN_00205930
+// mangled:   
+// size:      332
+
+00205930  str x21,[sp, #-0x30]!
+00205934  stp x20,x19,[sp, #0x10]
+00205938  stp x29,x30,[sp, #0x20]
+0020593c  add x29,sp,#0x20
+00205940  adrp x8,0x52a3000
+00205944  ldr x8,[x8, #0xda8]
+00205948  adrp x21,0x52a3000
+0020594c  ldrb w8,[x8]
+00205950  ldr x21,[x21, #0xdb0]
+00205954  mov x19,x0
+00205958  add x20,x21,#0x28
+0020595c  cbz w8,0x00205998
+00205960  adrp x8,0x52a3000
+00205964  ldr x8,[x8, #0xdb8]
+00205968  ldr x0,[x8]
+0020596c  bl 0x01717c00
+00205970  ldr w8,[x0]
+00205974  cbz w8,0x00205998
+00205978  ldr x10,[x21, #0xa0]
+0020597c  ldp x9,x10,[x10]
+00205980  sub x10,x10,x9
+00205984  asr x10,x10,#0x3
+00205988  cmp x10,x8
+0020598c  b.ls 0x002059b0
+00205990  ldr x8,[x9, x8, LSL #0x3]
+00205994  add x20,x8,#0x20
+00205998  ldr x8,[x20]
+0020599c  cbz x8,0x002059c8
+002059a0  ldr x8,[x8, #0x10]
+002059a4  cbz x8,0x002059c8
+002059a8  ldr x20,[x8, #0x10]
+002059ac  b 0x002059cc
+002059b0  adrp x0,0x42c3000
+002059b4  add x0,x0,#0x35f
+002059b8  mov w1,#0x47
+002059bc  orr w2,wzr,#0xe0000003
+002059c0  mov w3,wzr
+002059c4  bl 0x001b1400
+002059c8  mov x20,xzr
+002059cc  ldr x8,[x20, #0x78]!
+002059d0  ldr x8,[x8, #0x10]
+002059d4  mov x0,x20
+002059d8  blr x8
+002059dc  ldrh w8,[x19, #0x40]
+002059e0  ldrh w9,[x19, #0x50]
+002059e4  sub w9,w8,w9
+002059e8  ldrh w10,[x19, #0x20]
+002059ec  sxth w9,w9
+002059f0  cmp w9,w10
+002059f4  b.ge 0x00205a44
+002059f8  mov x10,x19
+002059fc  ldr x11,[x10, #0x10]!
+00205a00  cbz x11,0x00205a44
+00205a04  mov x9,x10
+00205a08  ldrh w12,[x11, #0x28]
+00205a0c  sub w12,w8,w12
+00205a10  sxth w12,w12
+00205a14  cmp w12,#0x0
+00205a18  cset w12,gt
+00205a1c  csel x9,x9,x11,gt
+00205a20  ldr x11,[x11, w12, UXTW #0x3]
+00205a24  cbnz x11,0x00205a08
+00205a28  cmp x9,x10
+00205a2c  b.eq 0x00205a44
+00205a30  ldrh w10,[x9, #0x28]
+00205a34  sub w10,w10,w8
+00205a38  sxth w10,w10
+00205a3c  cmp w10,#0x0
+00205a40  b.le 0x00205a6c
+00205a44  mov x19,xzr
+00205a48  ldr x8,[x20]
+00205a4c  ldr x8,[x8, #0x20]
+00205a50  mov x0,x20
+00205a54  blr x8
+00205a58  mov x0,x19
+00205a5c  ldp x29,x30,[sp, #0x20]
+00205a60  ldp x20,x19,[sp, #0x10]
+00205a64  ldr x21,[sp], #0x30
+00205a68  ret
+00205a6c  add w8,w8,#0x1
+00205a70  strh w8,[x19, #0x40]
+00205a74  ldr x19,[x9, #0x30]
+00205a78  b 0x00205a48

@@ -1,0 +1,20 @@
+Location,Match Bytes,Match Value,Label,Code Unit
+045808b8,72 6d 63,rmc,,?? 72h    r
+04689fbe,72 6d 43,rmC,,?? 72h    r
+04358575,72 6d 43,rmC,,"ds ""00_DestroyPlatformC01aR"""
+043057c9,72 6d 43,rmC,,"ds ""00_DestroyPlatformC02bL"""
+042f4ef9,72 6d 43,rmC,,"ds ""00_DestroyPlatformC02cR"""
+043cc690,72 6d 43,rmC,,"ds ""00_DestroyPlatformC03aL"""
+043057e1,72 6d 43,rmC,,"ds ""00_DestroyPlatformC03cR"""
+0443025c,72 6d 43,rmC,,"ds ""00_DestroyPlatformC04aL"""
+042438ab,72 6d 43,rmC,,"ds ""_ZN2nn3hid25SendVibrationGcErmCommandERKNS0_21VibrationDeviceHandleERKNS0_21VibrationGcErmCommandE"""
+042438e7,72 6d 43,rmC,,"ds ""_ZN2nn3hid25SendVibrationGcErmCommandERKNS0_21VibrationDeviceHandleERKNS0_21VibrationGcErmCommandE"""
+0424396c,72 6d 43,rmC,,"ds ""_ZN2nn3hid30GetActualVibrationGcErmCommandEPNS0_21VibrationGcErmCommandERKNS0_21VibrationDeviceHandleE"""
+04243989,72 6d 43,rmC,,"ds ""_ZN2nn3hid30GetActualVibrationGcErmCommandEPNS0_21VibrationGcErmCommandERKNS0_21VibrationDeviceHandleE"""
+0524657a,72 6d 43,rmC,,"ds ""nuUVTransformCBuffer"""
+05249e73,72 6d 43,rmC,,"ds ""nuUVTransformCBuffer"""
+0524d9a7,72 6d 43,rmC,,"ds ""nuUVTransformCBuffer"""
+05250942,72 6d 43,rmC,,"ds ""nuUVTransformCBuffer"""
+05253e27,72 6d 43,rmC,,"ds ""nuUVTransformCBuffer"""
+0040bf97,52 4d 43,RMC,,"mov w13,#0x170"
+0040bf9f,52 4d 63,RMc,,"mov w13,#0x171"

@@ -1,0 +1,2 @@
+Location,Match Value,Depth,Terminal,Ref Type,Operand Index,From Address,From Offset,From Code Unit,Function Address,Function Offset,Function Name,Function Symbol,Function Demangled,Function Namespace,Function Signature,Function Size,Function Basic Blocks,Function Incoming Refs,Function Decompile Path,Function CFG Path,Function Clone Hash,Function Fingerprint,Function Referenced By,Path
+04440945,gsp,1,0,BRUTE_PTR,-1,03d4b3a0,0x3d4b3a0,?? 45h    E,,,,,,,,0,0,0,,,,,,04440945 -> 03d4b3a0

@@ -1,0 +1,10 @@
+Location,Match Value,Depth,Terminal,Ref Type,Operand Index,From Address,From Offset,From Code Unit,Function Address,Function Offset,Function Name,Function Symbol,Function Demangled,Function Namespace,Function Signature,Function Size,Function Basic Blocks,Function Incoming Refs,Function Decompile Path,Function CFG Path,Function Clone Hash,Function Fingerprint,Function Referenced By,Path
+042f4f74,Block,1,0,DATA,0,03ddb838,0x3ddb838,addr 042f4f74,,,,,,,,0,0,0,,,,,,042f4f74 -> 03ddb838
+042c1ee4,Block,1,0,DATA,0,03dcfec8,0x3dcfec8,addr 042c1ee4,,,,,,,,0,0,0,,,,,,042c1ee4 -> 03dcfec8
+042a042b,Block,1,0,BRUTE_PTR,-1,047275dc,0x47275dc,?? 2Bh    +,,,,,,,,0,0,0,,,,,,042a042b -> 047275dc
+042a042b,Block,1,0,BRUTE_PTR,-1,04727a90,0x4727a90,?? 2Bh    +,,,,,,,,0,0,0,,,,,,042a042b -> 04727a90
+042a0394,Block,1,0,DATA,0,03de77d8,0x3de77d8,addr 042a0394,,,,,,,,0,0,0,,,,,,042a0394 -> 03de77d8
+042a0394,Block,1,0,DATA,0,03de8828,0x3de8828,addr 042a0394,,,,,,,,0,0,0,,,,,,042a0394 -> 03de8828
+0427dc92,block,1,0,DATA,0,03de79e8,0x3de79e8,addr 0427dc92,,,,,,,,0,0,0,,,,,,0427dc92 -> 03de79e8
+0427dc92,block,1,0,DATA,0,03de8a38,0x3de8a38,addr 0427dc92,,,,,,,,0,0,0,,,,,,0427dc92 -> 03de8a38
+042d3654,block,1,0,DATA,0,03de1fa0,0x3de1fa0,addr 042d3654,,,,,,,,0,0,0,,,,,,042d3654 -> 03de1fa0

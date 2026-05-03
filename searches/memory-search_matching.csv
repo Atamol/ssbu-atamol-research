@@ -1,0 +1,7 @@
+Location,Match Bytes,Match Value,Label,Code Unit
+042a0b6d,4d 61 74 63 68 69 6e 67,Matching,s_TaskMatching_042a0b69,"ds ""TaskMatching"""
+04246dbf,4d 61 74 63 68 69 6e 67,Matching,,"ds ""_ZN2nn2oe27SetTvPowerStateMatchingModeENS0_24TvPowerStateMatchingModeE"""
+04246dde,4d 61 74 63 68 69 6e 67,Matching,,"ds ""_ZN2nn2oe27SetTvPowerStateMatchingModeENS0_24TvPowerStateMatchingModeE"""
+042f6c7d,6d 61 74 63 68 69 6e 67,matching,,"ds ""is_parallel_matching"""
+043cdc96,6d 61 74 63 68 69 6e 67,matching,,"ds ""matching_retry"""
+04305e73,6d 61 74 63 68 69 6e 67,matching,,"ds ""sleep_parallel_matching"""

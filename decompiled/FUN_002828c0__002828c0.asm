@@ -1,0 +1,89 @@
+// addr:      002828c0
+// offset:    0x2828c0
+// name:      FUN_002828c0
+// mangled:   
+// size:      332
+
+002828c0  sub sp,sp,#0x80
+002828c4  stp x22,x21,[sp, #0x50]
+002828c8  stp x20,x19,[sp, #0x60]
+002828cc  stp x29,x30,[sp, #0x70]
+002828d0  add x29,sp,#0x70
+002828d4  adrp x8,0x52a3000
+002828d8  ldr x8,[x8, #0xda8]
+002828dc  adrp x22,0x52a3000
+002828e0  ldrb w8,[x8]
+002828e4  ldr x22,[x22, #0xdb0]
+002828e8  mov x20,x1
+002828ec  mov x19,x0
+002828f0  add x21,x22,#0x28
+002828f4  cbz w8,0x00282930
+002828f8  adrp x8,0x52a3000
+002828fc  ldr x8,[x8, #0xdb8]
+00282900  ldr x0,[x8]
+00282904  bl 0x01717c00
+00282908  ldr w8,[x0]
+0028290c  cbz w8,0x00282930
+00282910  ldr x10,[x22, #0xa0]
+00282914  ldp x9,x10,[x10]
+00282918  sub x10,x10,x9
+0028291c  asr x10,x10,#0x3
+00282920  cmp x10,x8
+00282924  b.ls 0x002829f4
+00282928  ldr x8,[x9, x8, LSL #0x3]
+0028292c  add x21,x8,#0x20
+00282930  ldr x8,[x21]
+00282934  ldr x8,[x8, #0x10]
+00282938  ldr x0,[x8, #0x18]
+0028293c  ldr w1,[x19, #0xa0]
+00282940  bl 0x001cd8d0
+00282944  cbz x0,0x00282998
+00282948  adrp x8,0x52a4000
+0028294c  ldr x8,[x8, #0x110]
+00282950  ldr w9,[x20]
+00282954  cmp w9,#0x0
+00282958  mov x21,x0
+0028295c  csel x8,x8,xzr,ge
+00282960  cbz x8,0x002829a4
+00282964  ldr x8,[x19]
+00282968  ldr x8,[x8, #0x88]
+0028296c  mov x0,x19
+00282970  blr x8
+00282974  ldp x8,x9,[x20]
+00282978  ldr x10,[x20, #0x10]
+0028297c  str x8,[sp, #0x20]
+00282980  mov x8,x10
+00282984  mov w1,#0x2
+00282988  stp x9,x10,[sp, #0x28]
+0028298c  stp x9,x8,[sp, #0x40]
+00282990  ldr x8,[sp, #0x20]
+00282994  b 0x002829c4
+00282998  add x0,x19,#0xf8
+0028299c  bl 0x001d0b10
+002829a0  b 0x002829d8
+002829a4  ldp x8,x9,[x20]
+002829a8  ldr x10,[x20, #0x10]
+002829ac  str x8,[sp, #0x8]
+002829b0  mov x8,x10
+002829b4  orr w1,wzr,#0x3
+002829b8  stp x9,x10,[sp, #0x10]
+002829bc  stp x9,x8,[sp, #0x40]
+002829c0  ldr x8,[sp, #0x8]
+002829c4  str x8,[sp, #0x38]
+002829c8  add x2,sp,#0x38
+002829cc  mov w3,#0x1
+002829d0  mov x0,x21
+002829d4  bl 0x001d1000
+002829d8  mov x0,x19
+002829dc  bl 0x001cd970
+002829e0  ldp x29,x30,[sp, #0x70]
+002829e4  ldp x20,x19,[sp, #0x60]
+002829e8  ldp x22,x21,[sp, #0x50]
+002829ec  add sp,sp,#0x80
+002829f0  ret
+002829f4  adrp x0,0x42c3000
+002829f8  add x0,x0,#0x35f
+002829fc  mov w1,#0x47
+00282a00  orr w2,wzr,#0xe0000003
+00282a04  mov w3,wzr
+00282a08  bl 0x001b1400

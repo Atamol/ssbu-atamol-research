@@ -1,0 +1,29 @@
+Location,Match Bytes,Match Value,Label,Code Unit
+0448ed58,56 49 50,VIP,,?? 56h    V
+045b2901,56 69 70,Vip,,?? 56h    V
+0465b0ef,56 69 50,ViP,,?? 56h    V
+0465de2b,56 69 50,ViP,,?? 56h    V
+0466398f,56 69 50,ViP,,?? 56h    V
+04665c9f,56 69 50,ViP,,?? 56h    V
+0466c4db,56 69 50,ViP,,?? 56h    V
+04685c47,56 69 50,ViP,,?? 56h    V
+04694bba,56 49 70,VIp,,?? 56h    V
+046c1d80,56 69 50,ViP,,?? 56h    V
+046db735,56 69 50,ViP,,?? 56h    V
+046dca30,56 69 50,ViP,,?? 56h    V
+046dfd26,56 69 50,ViP,,?? 56h    V
+046ea269,56 69 50,ViP,,?? 56h    V
+043177e7,76 69 70,vip,,?? 76h    v
+0436b4aa,56 49 50,VIP,,"ds ""ANYONE_VIP"""
+042d538b,56 49 50,VIP,,"ds ""BUTTON_ID_VIP"""
+043bd76a,56 49 50,VIP,,"ds ""MODE_VIP"""
+044004f7,56 49 50,VIP,,"ds ""SEQUENCE_ONLINE_MELEE_ANYONE_VIP"""
+042e5c1e,76 69 70,vip,,"ds ""black_base_vip"""
+04329079,76 69 70,vip,,"ds ""g_is_vip_fighter"""
+0425e3b4,76 69 70,vip,,"ds ""is_unlock_vip_match"""
+043bd656,76 69 70,vip,,"ds ""is_valid_vip_match"""
+043ac39b,76 69 70,vip,,"ds ""mnu_replay_detail_anyone_vip"""
+043075eb,76 69 70,vip,,"ds ""mnu_while_wait_await_anyone_help_vip"""
+044532cf,76 69 70,vip,,"ds ""online_vs_vip_count"""
+044111be,76 69 70,vip,,"ds ""online_vs_vip_win_count"""
+0426eff3,76 69 70,vip,,"ds ""unlock_vip_match"""

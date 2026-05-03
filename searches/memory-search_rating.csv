@@ -1,0 +1,10 @@
+Location,Match Bytes,Match Value,Label,Code Unit
+0449fd68,52 61 74 69 6e 67,Rating,,?? 52h    R
+04359ce3,72 61 74 69 6e 67,rating,,"ds "", ratingInitParam="""
+042f69c6,72 61 74 69 6e 67,rating,,"ds "", ratingInitParams=("""
+042a17ca,52 61 74 69 6e 67,Rating,,"ds ""DataStoreRatingInitParam: ("""
+04306c5b,52 61 74 69 6e 67,Rating,,"ds ""GameRatingEvaluatorManager::process"""
+0449fd43,52 61 74 69 6e 67,Rating,,"ds ""N2nn3nex18DataStoreRatingLogE"""
+0449f2a9,52 61 74 69 6e 67,Rating,,"ds ""N2nn3nex21JobDataStoreGetRatingE"""
+042e5858,52 61 74 69 6e 67,Rating,,"ds ""TaskRating"""
+043389ed,72 61 74 69 6e 67,rating,,"ds ""rating"""
