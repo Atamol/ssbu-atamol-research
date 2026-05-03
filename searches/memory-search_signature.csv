@@ -1,0 +1,3 @@
+Location,Match Bytes,Match Value,Label,Code Unit
+04452c54,53 69 67 6e 61 74 75 72 65,Signature,,"ds ""Signature check failed ('%c%c%c%c' must be '%c%c%c%c')."""
+0424b175,53 69 67 6e 61 74 75 72 65,Signature,,"ds ""_ZNK2nn4util16BinaryFileHeader16IsSignatureValidEl"""

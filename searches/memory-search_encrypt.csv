@@ -1,0 +1,4 @@
+Location,Match Bytes,Match Value,Label,Code Unit
+0424db4a,45 6e 63 72 79 70 74,Encrypt,,"ds ""Encryption Error"""
+0449b7dd,45 6e 63 72 79 70 74,Encrypt,,"ds ""N2nn3nex13RC4EncryptionE"""
+0449b7ba,45 6e 63 72 79 70 74,Encrypt,,"ds ""N2nn3nex19EncryptionAlgorithmE"""

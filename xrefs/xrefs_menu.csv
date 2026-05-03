@@ -1,0 +1,2 @@
+Location,Match Value,Depth,Terminal,Ref Type,Operand Index,From Address,From Offset,From Code Unit,Function Address,Function Offset,Function Name,Function Symbol,Function Demangled,Function Namespace,Function Signature,Function Size,Function Basic Blocks,Function Incoming Refs,Function Decompile Path,Function CFG Path,Function Clone Hash,Function Fingerprint,Function Referenced By,Path
+04421a53,menu,1,1,PARAM,0,01e4ebbc,0x1e4ebbc,"add x1,x1,#0xa53",,,,,,,,0,0,0,,,,,,04421a53 -> 01e4ebbc

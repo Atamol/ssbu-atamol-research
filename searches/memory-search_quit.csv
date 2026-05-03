@@ -1,0 +1,5 @@
+Location,Match Bytes,Match Value,Label,Code Unit
+0425d320,71 75 69 74,quit,,"ds ""No authentication method was acceptable. (It is quite likely that the SOCKS5 server wanted a username/password, since none was supplied to the server on this connection.)"""
+0436ae6e,71 75 69 74,quit,,"ds ""pausequit_disp_off"""
+042a1b01,71 75 69 74,quit,,"ds ""pausequit_disp_on"""
+0424e77d,71 75 69 74,quit,,"ds ""pop_btn_quit"""

@@ -1,0 +1,2 @@
+Location,Match Value,Depth,Terminal,Ref Type,Operand Index,From Address,From Offset,From Code Unit,Function Address,Function Offset,Function Name,Function Symbol,Function Demangled,Function Namespace,Function Signature,Function Size,Function Basic Blocks,Function Incoming Refs,Function Decompile Path,Function CFG Path,Function Clone Hash,Function Fingerprint,Function Referenced By,Path
+043de665,Kick,1,1,PARAM,0,00843e5c,0x843e5c,"mov x1,x27",,,,,,,,0,0,0,,,,,,043de665 -> 00843e5c

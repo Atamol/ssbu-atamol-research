@@ -36,7 +36,8 @@
 │   ├── structs.csv               構造体・共用体のフィールド一覧
 │   ├── enums.csv                 列挙型の値 → 名前マッピング
 │   ├── segments.csv              メモリブロック (.text/.rodata/.data等)
-│   └── imports.csv               外部モジュールから取り込んでいるシンボル
+│   ├── imports.csv               外部モジュールから取り込んでいるシンボル
+│   └── hash40_loads.csv          MOVZ/MOVK で hash40 をロードしている全箇所 (識別子逆引き)
 ├── rust-externs/                 Rust externブロック (<category>.rs, all.rs)
 └── decompiled/                   関数ごとのC擬似コード，Mermaid CFG，アセンブリ
 ```
@@ -55,7 +56,7 @@
 2. Script Managerで`scripts/`ディレクトリをManage Script Directoriesから追加
 3. `Search`カテゴリの`dump_xrefs.py`をRun
 
-走り終わるとINDEX.mdが更新され，全テーブル・全レポート・全decompileが揃う
+走り終わるとINDEX.mdが更新され，全テーブル・全レポート・全decompileが揃う．
 
 ### 出力の使い分け
 
@@ -73,6 +74,7 @@
 - **定数値からその使用箇所を逆引き**: `tables/constants.csv` (e.g. PRUDP packet ID, NEX error code)
 - **任意の文字列が触られているか調べたい**: `tables/strings.csv`または`tables/string_xrefs.csv`
 - **特定の文字列を参照する全関数を一覧**: `tables/string_xrefs.csv`でString Valueをフィルタ
+- **hash40 識別子の実装関数を見つけたい**: `tables/hash40_loads.csv` でラベル名 (例: `sleep_parallel_matching`) をフィルタ
 - **メモリブロック・セクションの配置**: `tables/segments.csv`
 - **外部モジュールに依存しているシンボル**: `tables/imports.csv`
 - **名前空間ごとの規模感**: `tables/namespaces.csv`
@@ -102,7 +104,7 @@ CONSUMER_SOURCES = [
 
 ## 設定 (主要ノブ)
 
-`scripts/dump_xrefs.py`の冒頭で挙動を変える
+`scripts/dump_xrefs.py`の冒頭で挙動を変える．
 
 - `MAX_DEPTH` xrefを辿る段数
 - `INCLUDE_DECOMP`デコンパイル有無 (Falseで爆速モード)
@@ -118,5 +120,10 @@ CONSUMER_SOURCES = [
 - `INCLUDE_STRING_XREFS` / `INCLUDE_SEGMENTS` / `INCLUDE_IMPORTS`
 - `INCLUDE_DISASM` / `INCLUDE_COMMENTS` / `INCLUDE_GLOBALS_ACCESS`
 - `INCLUDE_NAME_HINTS`
+- `INCLUDE_BRUTE_REFS` Ghidra が見落としたポインタを data ブロックでスキャン
+- `INCLUDE_HASH40` / `INCLUDE_HASH40_FULL_SCAN` MOVZ/MOVK パターンの hash40 ロードを検出
+- `HASH40_LABELS_CSV` ParamLabels.csv のパス (デフォルトは `../SSBU-Dump-Scripts/ParamLabels.csv`)
+- `EXTERNAL_NAME_CSVS` 関数名の外部 DB (ssbu-decomp 等)．サイズ一致のファジーマッチも対応
+- `INCLUDE_EXTERNAL_FUZZY` / `EXTERNAL_FUZZY_TOLERANCE`
 - `CONSUMER_SOURCES`消費者プロジェクトのスキャン対象
 - `NRO_BASE_OVERRIDE`モジュールベース．NoneならGhidraのイメージベースを使う

@@ -1,0 +1,13 @@
+Location,Match Value,Depth,Terminal,Ref Type,Operand Index,From Address,From Offset,From Code Unit,Function Address,Function Offset,Function Name,Function Symbol,Function Demangled,Function Namespace,Function Signature,Function Size,Function Basic Blocks,Function Incoming Refs,Function Decompile Path,Function CFG Path,Function Clone Hash,Function Fingerprint,Function Referenced By,Path
+04441205,ONLINE,1,0,DATA,0,03a73408,0x3a73408,addr 04441205,,,,,,,,0,0,0,,,,,,04441205 -> 03a73408
+04441205,ONLINE,1,0,DATA,0,03ce1710,0x3ce1710,addr 04441205,,,,,,,,0,0,0,,,,,,04441205 -> 03ce1710
+04441205,ONLINE,1,0,DATA,0,03eb54b8,0x3eb54b8,addr 04441205,,,,,,,,0,0,0,,,,,,04441205 -> 03eb54b8
+04441205,ONLINE,1,0,DATA,0,03eb54d0,0x3eb54d0,addr 04441205,,,,,,,,0,0,0,,,,,,04441205 -> 03eb54d0
+04441205,ONLINE,1,0,DATA,0,03eb54e8,0x3eb54e8,addr 04441205,,,,,,,,0,0,0,,,,,,04441205 -> 03eb54e8
+0428e6cf,Online,1,0,DATA,0,03d472f0,0x3d472f0,addr 0428e6cf,,,,,,,,0,0,0,,,,,,0428e6cf -> 03d472f0
+0428e6cf,Online,1,0,DATA,0,03d47368,0x3d47368,addr 0428e6cf,,,,,,,,0,0,0,,,,,,0428e6cf -> 03d47368
+0428e6cf,Online,1,0,DATA,0,03d48250,0x3d48250,addr 0428e6cf,,,,,,,,0,0,0,,,,,,0428e6cf -> 03d48250
+0428e6cf,Online,1,0,DATA,0,03d482c8,0x3d482c8,addr 0428e6cf,,,,,,,,0,0,0,,,,,,0428e6cf -> 03d482c8
+04358254,Online,1,0,DATA,0,03d433d8,0x3d433d8,addr 04358254,,,,,,,,0,0,0,,,,,,04358254 -> 03d433d8
+043ac897,online,1,1,PARAM,0,01ca870c,0x1ca870c,"add x1,x1,#0x897",01ca8640,0x1ca8640,FUN_01ca8640,,,Global,"ulong __cdecl FUN_01ca8640(undefined1[16] param_1, undefined1[16] param_2, float param_3, undefined1[16] param_4, undefined1[16] param_5, undefined1[16] param_6, undefined1[16] param_7, long * param_8, undefined8 param_9, undefined8 * param_10, undefined8 param_11, undefined8 param_12, undefined8 param_13, undefined8 param_14, undefined8 param_15, undefined8 param_16, undefined1 param_17)",1884,110,1,decompiled/FUN_01ca8640__01ca8640.c,decompiled/FUN_01ca8640__01ca8640.mmd,2c0af1c1db866572,ffc302d1f54300f9f44f09a9fd7b0aa9fd830291080c41f9086141b9f30300aa,,043ac897 -> 01ca870c
+042c3976,online,1,1,PARAM,0,038f903c,0x38f903c,"add x1,x1,#0x976",,,,,,,,0,0,0,,,,,,042c3976 -> 038f903c

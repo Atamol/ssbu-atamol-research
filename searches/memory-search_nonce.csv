@@ -1,0 +1,5 @@
+Location,Match Bytes,Match Value,Label,Code Unit
+042a0f61,6e 6f 6e 63 65,nonce,,"ds ""nonce"""
+0439b1a8,6e 6f 6e 63 65,nonce,,"ds ""username=\""%s\"", realm=\""%s\"", nonce=\""%s\"", uri=\""%s\"", cnonce=\""%s\"", nc=%08x, qop=%s, response=\""%s\"""""
+0439b1bf,6e 6f 6e 63 65,nonce,,"ds ""username=\""%s\"", realm=\""%s\"", nonce=\""%s\"", uri=\""%s\"", cnonce=\""%s\"", nc=%08x, qop=%s, response=\""%s\"""""
+0437a7c8,6e 6f 6e 63 65,nonce,,"ds ""username=\""%s\"", realm=\""%s\"", nonce=\""%s\"", uri=\""%s\"", response=\""%s\"""""

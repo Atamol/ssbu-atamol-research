@@ -1,0 +1,5 @@
+Location,Match Value,Depth,Terminal,Ref Type,Operand Index,From Address,From Offset,From Code Unit,Function Address,Function Offset,Function Name,Function Symbol,Function Demangled,Function Namespace,Function Signature,Function Size,Function Basic Blocks,Function Incoming Refs,Function Decompile Path,Function CFG Path,Function Clone Hash,Function Fingerprint,Function Referenced By,Path
+0441fa6a,joint,1,1,PARAM,0,018abfd4,0x18abfd4,"add x1,x1,#0xa6a",,,,,,,,0,0,0,,,,,,0441fa6a -> 018abfd4
+042b2719,Joint,1,1,DATA,0,00183d94,0x183d94,"str x8,[x19, #0x40]",,,,,,,,0,0,0,,,,,,042b2719 -> 00183d94
+0427ed7d,Joint,1,1,DATA,0,001032d4,0x1032d4,"str x8,[x19, #0x40]",,,,,,,,0,0,0,,,,,,0427ed7d -> 001032d4
+044305a4,joint,1,0,DATA,0,03e55200,0x3e55200,addr 044305a4,,,,,,,,0,0,0,,,,,,044305a4 -> 03e55200

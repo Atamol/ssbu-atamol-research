@@ -1,0 +1,9 @@
+Location,Match Value,Depth,Terminal,Ref Type,Operand Index,From Address,From Offset,From Code Unit,Function Address,Function Offset,Function Name,Function Symbol,Function Demangled,Function Namespace,Function Signature,Function Size,Function Basic Blocks,Function Incoming Refs,Function Decompile Path,Function CFG Path,Function Clone Hash,Function Fingerprint,Function Referenced By,Path
+0439ab4e,ban,1,0,DATA,0,04081778,0x4081778,addr 0439ab4e,,,,,,,,0,0,0,,,,,,0439ab4e -> 04081778
+0439ab4e,ban,1,0,DATA,0,04085258,0x4085258,addr 0439ab4e,,,,,,,,0,0,0,,,,,,0439ab4e -> 04085258
+0439ab4e,ban,1,0,DATA,0,04085288,0x4085288,addr 0439ab4e,,,,,,,,0,0,0,,,,,,0439ab4e -> 04085288
+0439ab4e,ban,1,0,DATA,0,040852b8,0x40852b8,addr 0439ab4e,,,,,,,,0,0,0,,,,,,0439ab4e -> 040852b8
+0439ab4e,ban,1,0,DATA,0,040852e8,0x40852e8,addr 0439ab4e,,,,,,,,0,0,0,,,,,,0439ab4e -> 040852e8
+0439ab4e,ban,1,1,READ,2,00444c84,0x444c84,"ldp x9,x8,[x8]",,,,,,,,0,0,0,,,,,,0439ab4e -> 00444c84
+043bd911,ban,1,1,PARAM,0,01d35958,0x1d35958,"add x1,x1,#0x911",,,,,,,,0,0,0,,,,,,043bd911 -> 01d35958
+0426e892,ban,1,0,DATA,0,03ce2808,0x3ce2808,addr 0426e892,,,,,,,,0,0,0,,,,,,0426e892 -> 03ce2808

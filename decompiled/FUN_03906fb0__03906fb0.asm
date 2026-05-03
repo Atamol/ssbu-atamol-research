@@ -1,0 +1,118 @@
+// addr:      03906fb0
+// offset:    0x3906fb0
+// name:      FUN_03906fb0
+// mangled:   
+// size:      448
+
+03906fb0  str x28,[sp, #-0x60]!
+03906fb4  stp x26,x25,[sp, #0x10]
+03906fb8  stp x24,x23,[sp, #0x20]
+03906fbc  stp x22,x21,[sp, #0x30]
+03906fc0  stp x20,x19,[sp, #0x40]
+03906fc4  stp x29,x30,[sp, #0x50]
+03906fc8  add x29,sp,#0x50
+03906fcc  sub sp,sp,#0x2, LSL #12
+03906fd0  sub sp,sp,#0x30
+03906fd4  mov x8,sp
+03906fd8  add x8,x8,#0x20
+03906fdc  str x8,[sp]
+03906fe0  mov w8,#0x2000
+03906fe4  stp xzr,x0,[sp, #0x10]
+03906fe8  str x8,[sp, #0x8]
+03906fec  ldrb w8,[x3]
+03906ff0  mov x26,x2
+03906ff4  mov x19,x0
+03906ff8  mov x20,x1
+03906ffc  cbz w8,0x03907018
+03907000  mov x0,x19
+03907004  mov x1,x20
+03907008  mov x2,x3
+0390700c  mov x3,x4
+03907010  bl 0x038f9a80
+03907014  mov x20,x0
+03907018  adrp x21,0x4307000
+0390701c  add x21,x21,#0xa71
+03907020  adrp x22,0x438b000
+03907024  add x22,x22,#0x71d
+03907028  mov w23,#0x3b
+0390702c  adrp x24,0x43bd000
+03907030  add x24,x24,#0x214
+03907034  b 0x0390703c
+03907038  add x26,x26,#0x1
+0390703c  ldrb w8,[x26]
+03907040  cmp w8,#0x3b
+03907044  b.eq 0x03907038
+03907048  cbz w8,0x03907198
+0390704c  mov x0,x26
+03907050  mov w1,w23
+03907054  bl 0x039bfbd0
+03907058  mov x25,x0
+0390705c  cbnz x0,0x0390706c
+03907060  mov x0,x26
+03907064  bl 0x039bfbc0
+03907068  add x25,x26,x0
+0390706c  sub x2,x25,x26
+03907070  mov x0,x19
+03907074  mov x1,x26
+03907078  bl 0x038f4550
+0390707c  cbz x25,0x03907198
+03907080  ldr x8,[x19, #0x10]
+03907084  sub x26,x8,#0x10
+03907088  ldur w8,[x8, #-0x8]
+0390708c  and w8,w8,#0xf
+03907090  cmp w8,#0x4
+03907094  b.eq 0x039070cc
+03907098  cmp w8,#0x3
+0390709c  b.ne 0x039070d8
+039070a0  ldr x8,[x19, #0x18]
+039070a4  ldr x8,[x8, #0x18]
+039070a8  cmp x8,#0x1
+039070ac  b.lt 0x039070c0
+039070b0  mov x0,x19
+039070b4  bl 0x038fe790
+039070b8  ldr x8,[x19, #0x10]
+039070bc  sub x26,x8,#0x10
+039070c0  mov x0,x19
+039070c4  mov x1,x26
+039070c8  bl 0x03907c00
+039070cc  ldr x8,[x26]
+039070d0  add x1,x8,#0x18
+039070d4  b 0x039070dc
+039070d8  mov x1,xzr
+039070dc  mov x0,x19
+039070e0  mov x2,x21
+039070e4  mov x3,x20
+039070e8  bl 0x038f9a80
+039070ec  ldr x8,[x19, #0x10]
+039070f0  sub x8,x8,#0x20
+039070f4  mov x26,x0
+039070f8  mov x9,x8
+039070fc  ldp x10,x11,[x9]
+03907100  stp x10,x11,[x29, #-0x60]
+03907104  ldp x10,x11,[x8, #0x10]
+03907108  stp x10,x11,[x9], #0x10
+0390710c  ldp x10,x11,[x29, #-0x60]
+03907110  stp x10,x11,[x8, #0x10]
+03907114  cmp x9,x8
+03907118  sub x8,x8,#0x10
+0390711c  b.cc 0x039070fc
+03907120  ldr x8,[x19, #0x10]
+03907124  sub x8,x8,#0x10
+03907128  mov x0,x26
+0390712c  mov x1,x22
+03907130  str x8,[x19, #0x10]
+03907134  bl 0x039c7d20
+03907198  mov x0,sp
+0390719c  bl 0x038f7650
+039071a0  mov x26,xzr
+039071a4  b 0x039071ac
+039071ac  mov x0,x26
+039071b0  add sp,sp,#0x2, LSL #12
+039071b4  add sp,sp,#0x30
+039071b8  ldp x29,x30,[sp, #0x50]
+039071bc  ldp x20,x19,[sp, #0x40]
+039071c0  ldp x22,x21,[sp, #0x30]
+039071c4  ldp x24,x23,[sp, #0x20]
+039071c8  ldp x26,x25,[sp, #0x10]
+039071cc  ldr x28,[sp], #0x60
+039071d0  ret

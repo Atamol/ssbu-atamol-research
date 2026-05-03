@@ -1,0 +1,3 @@
+Location,Match Value,Depth,Terminal,Ref Type,Operand Index,From Address,From Offset,From Code Unit,Function Address,Function Offset,Function Name,Function Symbol,Function Demangled,Function Namespace,Function Signature,Function Size,Function Basic Blocks,Function Incoming Refs,Function Decompile Path,Function CFG Path,Function Clone Hash,Function Fingerprint,Function Referenced By,Path
+04494fe0,MatchmakeSession,1,0,DATA,0,039dd648,0x39dd648,addr 04494fe0,,,,,,,,0,0,0,,,,,,04494fe0 -> 039dd648
+043de327,MatchmakeSession,1,1,DATA,1,00110e40,0x110e40,"stp xzr,x8,[x19, #0x38]",,,,,,,,0,0,0,,,,,,043de327 -> 00110e40

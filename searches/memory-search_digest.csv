@@ -1,0 +1,4 @@
+Location,Match Bytes,Match Value,Label,Code Unit
+0438a8cc,44 69 67 65 73 74,Digest,,"ds ""%sAuthorization: Digest %s\r\n"""
+043481a1,44 69 67 65 73 74,Digest,,"ds ""Digest"""
+043ff270,64 69 67 65 73 74,digest,,"ds ""Ignoring duplicate digest auth header.\n"""

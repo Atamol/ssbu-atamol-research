@@ -1,0 +1,95 @@
+// addr:      002a4050
+// offset:    0x2a4050
+// name:      FUN_002a4050
+// mangled:   
+// size:      356
+
+002a4050  sub sp,sp,#0x160
+002a4054  stp x28,x21,[sp, #0x130]
+002a4058  stp x20,x19,[sp, #0x140]
+002a405c  stp x29,x30,[sp, #0x150]
+002a4060  add x29,sp,#0x150
+002a4064  mov x19,x0
+002a4068  add x0,sp,#0x8
+002a406c  bl 0x001b6180
+002a4070  adrp x1,0x43bd000
+002a4074  add x1,x1,#0xb86
+002a4078  add x0,sp,#0x8
+002a407c  bl 0x001b0bb0
+002a4080  mov x20,x0
+002a4084  bl 0x001dc880
+002a4088  and w1,w0,#0xffff
+002a408c  mov x0,x20
+002a4090  bl 0x001b6570
+002a4094  adrp x20,0x44a1000
+002a4098  add x20,x20,#0xe45
+002a409c  mov x1,x20
+002a40a0  bl 0x001b0bb0
+002a40a4  mov x21,x0
+002a40a8  bl 0x001dc890
+002a40ac  and w1,w0,#0xffff
+002a40b0  mov x0,x21
+002a40b4  bl 0x001b6570
+002a40b8  mov x1,x20
+002a40bc  bl 0x001b0bb0
+002a40c0  mov x21,x0
+002a40c4  bl 0x001dc8a0
+002a40c8  and w1,w0,#0xffff
+002a40cc  mov x0,x21
+002a40d0  bl 0x001b6570
+002a40d4  adrp x1,0x4329000
+002a40d8  add x1,x1,#0x544
+002a40dc  bl 0x001b0bb0
+002a40e0  adrp x1,0x42f7000
+002a40e4  add x1,x1,#0x716
+002a40e8  add x0,sp,#0x8
+002a40ec  bl 0x001b0bb0
+002a40f0  mov w1,#0x8
+002a40f4  bl 0x001b6570
+002a40f8  mov x1,x20
+002a40fc  bl 0x001b0bb0
+002a4100  mov w1,#0x2
+002a4104  bl 0x001b6570
+002a4108  mov x1,x20
+002a410c  bl 0x001b0bb0
+002a4110  mov w1,wzr
+002a4114  bl 0x001b6570
+002a4118  mov x1,x20
+002a411c  bl 0x001b0bb0
+002a4120  mov w1,wzr
+002a4124  bl 0x001b6570
+002a4128  adrp x1,0x4441000
+002a412c  add x1,x1,#0x605
+002a4130  add x0,sp,#0x8
+002a4134  bl 0x001b0bb0
+002a4138  adrp x1,0x42a1000
+002a413c  add x1,x1,#0x56a
+002a4140  bl 0x001b0bb0
+002a4144  mov w1,#0x8
+002a4148  bl 0x001b6570
+002a414c  mov x1,x20
+002a4150  bl 0x001b0bb0
+002a4154  mov w1,#0x2
+002a4158  bl 0x001b6570
+002a415c  mov x1,x20
+002a4160  bl 0x001b0bb0
+002a4164  mov w1,wzr
+002a4168  bl 0x001b6570
+002a416c  mov x1,x20
+002a4170  bl 0x001b0bb0
+002a4174  mov w1,wzr
+002a4178  bl 0x001b6570
+002a417c  adrp x1,0x4420000
+002a4180  add x1,x1,#0x7a5
+002a4184  add x0,sp,#0x8
+002a4188  bl 0x001b0bb0
+002a418c  ldr x1,[sp, #0x10]
+002a4190  mov x0,x19
+002a4194  bl 0x001b3db0
+002a4198  add x0,sp,#0x8
+002a419c  bl 0x001b61c0
+002a41a0  ldp x29,x30,[sp, #0x150]
+002a41a4  ldp x20,x19,[sp, #0x140]
+002a41a8  ldp x28,x21,[sp, #0x130]
+002a41ac  add sp,sp,#0x160
+002a41b0  ret

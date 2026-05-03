@@ -1,0 +1,229 @@
+// addr:      032012c0
+// offset:    0x32012c0
+// name:      FUN_032012c0
+// mangled:   
+// size:      892
+
+032012c0  sub sp,sp,#0xe0
+032012c4  stp d11,d10,[sp, #0x60]
+032012c8  str x27,[sp, #0x80]
+032012cc  stp d9,d8,[sp, #0x70]
+032012d0  stp x26,x25,[sp, #0x90]
+032012d4  stp x24,x23,[sp, #0xa0]
+032012d8  stp x22,x21,[sp, #0xb0]
+032012dc  stp x20,x19,[sp, #0xc0]
+032012e0  stp x29,x30,[sp, #0xd0]
+032012e4  add x29,sp,#0xd0
+032012e8  ldr x8,[x0, #0x40]
+032012ec  ldr x10,[x8, #0x68]
+032012f0  fmov s10,0x3f000000
+032012f4  ldp s0,s1,[x10, #0x18]
+032012f8  fmul s1,s1,s10
+032012fc  ldr s8,[x1, #0x38]
+03201300  add x9,x10,#0x10
+03201304  mov x11,x9
+03201308  fsub s2,s0,s1
+0320130c  fadd s0,s1,s0
+03201310  fcmp s2,s8
+03201314  fccmp s8,s0,#0x2,ls
+03201318  mov x19,x1
+0320131c  mov x20,x0
+03201320  b.ls 0x0320139c
+03201324  ldp s0,s1,[x10, #0xb8]
+03201328  fmul s1,s1,s10
+0320132c  fsub s2,s0,s1
+03201330  fadd s0,s1,s0
+03201334  fcmp s2,s8
+03201338  fccmp s8,s0,#0x2,ls
+0320133c  b.ls 0x03201388
+03201340  ldr s0,[x10, #0x15c]
+03201344  fmul s0,s0,s10
+03201348  ldr s1,[x10, #0x158]
+0320134c  fsub s2,s1,s0
+03201350  fadd s0,s0,s1
+03201354  fcmp s2,s8
+03201358  fccmp s8,s0,#0x2,ls
+0320135c  b.ls 0x03201390
+03201360  ldr s0,[x10, #0x1fc]
+03201364  fmul s0,s0,s10
+03201368  ldr s1,[x10, #0x1f8]
+0320136c  fsub s2,s1,s0
+03201370  fadd s0,s0,s1
+03201374  fcmp s2,s8
+03201378  fccmp s8,s0,#0x2,ls
+0320137c  b.ls 0x03201398
+03201380  mov w11,wzr
+03201384  b 0x032013a0
+03201388  add x11,x10,#0xb0
+0320138c  b 0x0320139c
+03201390  add x11,x10,#0x150
+03201394  b 0x0320139c
+03201398  add x11,x10,#0x1f0
+0320139c  ldr w11,[x11, #0x4]
+032013a0  ldr w12,[x10, #0x14]
+032013a4  cmp w12,w11
+032013a8  b.eq 0x032013e4
+032013ac  ldr w12,[x10, #0xb4]
+032013b0  cmp w12,w11
+032013b4  b.ne 0x032013c0
+032013b8  add x9,x10,#0xb0
+032013bc  b 0x032013e4
+032013c0  ldr w12,[x10, #0x154]
+032013c4  cmp w12,w11
+032013c8  b.ne 0x032013d4
+032013cc  add x9,x10,#0x150
+032013d0  b 0x032013e4
+032013d4  add x12,x10,#0x1f0
+032013d8  ldr w10,[x10, #0x1f4]
+032013dc  cmp w10,w11
+032013e0  csel x9,x12,x9,eq
+032013e4  ldp q0,q1,[x19]
+032013e8  fmul v1.4S,v1.4S,v1.4S
+032013ec  ldr s9,[x9, #0xc]
+032013f0  fmul v0.4S,v0.4S,v0.4S
+032013f4  ext v2.16B,v0.16B,v0.16B,0x8
+032013f8  fadd v0.2S,v2.2S,v0.2S
+032013fc  ext v2.16B,v1.16B,v1.16B,0x8
+03201400  fadd v1.2S,v2.2S,v1.2S
+03201404  ldr q2,[x19, #0x20]
+03201408  faddp v0.2S,v0.2S,v0.2S
+0320140c  faddp v1.2S,v1.2S,v1.2S
+03201410  fmul v2.4S,v2.4S,v2.4S
+03201414  ext v3.16B,v2.16B,v2.16B,0x8
+03201418  mov v0.D[0x1],v0.D[0x0]
+0320141c  fadd v2.2S,v3.2S,v2.2S
+03201420  mov v1.D[0x1],v1.D[0x0]
+03201424  faddp v2.2S,v2.2S,v2.2S
+03201428  fsqrt v0.4S,v0.4S
+0320142c  fmov s3,wzr
+03201430  fsqrt v1.4S,v1.4S
+03201434  zip1 v0.2S,v0.2S,v1.2S
+03201438  mov v2.D[0x1],v2.D[0x0]
+0320143c  add x2,x20,#0x1d0
+03201440  fsqrt v2.4S,v2.4S
+03201444  add x0,sp,#0x10
+03201448  mov v2.S[0x1],v3.S[0x0]
+0320144c  add x3,sp,#0x50
+03201450  mov v0.D[0x1],v2.D[0x0]
+03201454  mov x1,x20
+03201458  str q0,[sp, #0x50]
+0320145c  ldr x8,[x8, #0x30]
+03201460  ldr s11,[x8, #0x12c]
+03201464  bl 0x031ffcc0
+03201468  ldr x0,[x20, #0x210]
+0320146c  add x21,x20,#0x210
+03201470  cbz x0,0x03201484
+03201474  str x0,[x20, #0x218]
+03201478  bl 0x0392e690
+03201484  ldr x8,[sp, #0x10]
+03201488  str x8,[x20, #0x210]
+0320148c  ldr x8,[sp, #0x18]
+03201490  str x8,[x20, #0x218]
+03201494  ldr x8,[sp, #0x20]
+03201498  str x8,[x20, #0x220]
+0320149c  ldrb w8,[sp, #0x28]
+032014a0  stp xzr,xzr,[sp, #0x18]
+032014a4  str xzr,[sp, #0x10]
+032014a8  strb w8,[x20, #0x228]
+032014ac  ldrb w8,[sp, #0x29]
+032014b0  strb w8,[x20, #0x229]
+032014b4  ldr w8,[sp, #0x2c]
+032014b8  str w8,[x20, #0x22c]
+032014bc  ldr x8,[sp, #0x38]
+032014c0  str x8,[x20, #0x238]
+032014c4  ldr x8,[sp, #0x30]
+032014c8  str x8,[x20, #0x230]
+032014cc  ldr x8,[sp, #0x48]
+032014d0  str x8,[x20, #0x248]
+032014d4  ldr x8,[sp, #0x40]
+032014d8  str x8,[x20, #0x240]
+032014dc  ldrb w8,[x20, #0x1e8]
+032014e0  cbz w8,0x03201568
+032014e4  ldr x1,[x20, #0x40]
+032014e8  mov v0.16B,v9.16B
+032014ec  add x0,sp,#0x8
+032014f0  mov x2,x21
+032014f4  bl 0x031de800
+032014f8  ldr x22,[sp, #0x8]
+032014fc  cbz x22,0x03201790
+03201500  mov w0,#0x10
+03201504  mov w1,#0x20
+03201508  bl 0x0392dde0
+03201568  ldr x22,[x20, #0x40]
+0320156c  mov w1,#0x190
+03201570  mov w0,#0x10
+03201574  fmul s11,s11,s10
+03201578  bl 0x0392dde0
+03201790  mov x0,xzr
+03201794  str xzr,[sp, #0x8]
+03201798  str x22,[x20, #0x250]
+0320179c  ldr x22,[x20, #0x258]
+032017a0  str x0,[x20, #0x258]
+032017a4  cbz x22,0x032017d8
+032017a8  add x8,x22,#0x8
+032017ac  ldaxr x9,[x8]
+032017b0  sub x10,x9,#0x1
+032017b4  stlxr w11,x10,[x8]
+032017b8  cbnz w11,0x032017ac
+032017bc  cbnz x9,0x032017d8
+032017c0  ldr x8,[x22]
+032017c4  ldr x8,[x8, #0x10]
+032017c8  mov x0,x22
+032017cc  blr x8
+032017d0  mov x0,x22
+032017d4  bl 0x039c21c0
+032017d8  ldr x0,[sp, #0x8]
+032017dc  str xzr,[sp, #0x8]
+032017e0  cbz x0,0x032017f0
+032017e4  ldr x8,[x0]
+032017e8  ldr x8,[x8, #0x8]
+032017ec  blr x8
+032017f0  ldr x27,[x20, #0x250]
+032017f4  ldr x22,[x20, #0x258]
+032017f8  cbz x22,0x03201878
+032017fc  add x8,x22,#0x8
+03201800  ldxr x9,[x8]
+03201804  add x9,x9,#0x1
+03201808  stxr w10,x9,[x8]
+0320180c  cbnz w10,0x03201800
+03201810  b 0x03201878
+03201878  ldr x1,[x20, #0x40]
+0320187c  mov v0.16B,v9.16B
+03201880  add x0,sp,#0x8
+03201884  mov x2,x21
+03201888  bl 0x031c5370
+0320188c  ldr x23,[sp, #0x8]
+03201890  cbz x23,0x032018fc
+03201894  mov w0,#0x10
+03201898  mov w1,#0x20
+0320189c  bl 0x0392dde0
+032018fc  mov x0,xzr
+03201900  str xzr,[sp, #0x8]
+03201904  str x23,[x20, #0x270]
+03201908  ldr x23,[x20, #0x278]
+0320190c  str x0,[x20, #0x278]
+03201910  cbz x23,0x03201944
+03201914  add x8,x23,#0x8
+03201918  ldaxr x9,[x8]
+0320191c  sub x10,x9,#0x1
+03201920  stlxr w11,x10,[x8]
+03201924  cbnz w11,0x03201918
+03201928  cbnz x9,0x03201944
+0320192c  ldr x8,[x23]
+03201930  ldr x8,[x8, #0x10]
+03201934  mov x0,x23
+03201938  blr x8
+0320193c  mov x0,x23
+03201940  bl 0x039c21c0
+03201944  ldr x0,[sp, #0x8]
+03201948  str xzr,[sp, #0x8]
+0320194c  cbz x0,0x0320195c
+03201950  ldr x8,[x0]
+03201954  ldr x8,[x8, #0x8]
+03201958  blr x8
+0320195c  ldr x25,[x20, #0x40]
+03201960  ldr x24,[x20, #0x1c8]
+03201964  mov w1,#0x160
+03201968  ldrb w26,[x20, #0x1e8]
+0320196c  mov w0,#0x10
+03201970  bl 0x0392dde0

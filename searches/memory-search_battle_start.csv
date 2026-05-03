@@ -1,0 +1,3 @@
+Location,Match Bytes,Match Value,Label,Code Unit
+042e632c,62 61 74 74 6c 65 5f 73 74 61 72 74,battle_start,,"ds ""mnu_online_room_inside_sysmsg_battle_start"""
+0438bbbe,62 61 74 74 6c 65 5f 73 74 61 72 74,battle_start,,"ds ""mnu_online_room_inside_sysmsg_battle_start_c"""

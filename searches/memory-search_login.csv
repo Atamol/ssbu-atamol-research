@@ -1,0 +1,12 @@
+Location,Match Bytes,Match Value,Label,Code Unit
+0449e174,4c 6f 67 69 6e,Login,,?? 4Ch    L
+0437a248,4c 6f 67 69 6e,Login,,"ds ""Login"""
+043581ef,4c 6f 67 69 6e,Login,,"ds ""LoginScene"""
+0449e521,4c 6f 67 69 6e,Login,s_N2nn3nex12JobNNIDLoginE_0449e510,"ds ""N2nn3nex12JobNNIDLoginE"""
+0449e562,4c 6f 67 69 6e,Login,s_N2nn3nex13JobSigloLoginE_0449e550,"ds ""N2nn3nex13JobSigloLoginE"""
+0449df5a,4c 6f 67 69 6e,Login,,"ds ""N2nn3nex21JobTicketManagerLoginE"""
+0449e06c,4c 6f 67 69 6e,Login,,"ds ""N2nn3nex23JobBackEndServicesLoginE"""
+0449e4fc,4c 6f 67 69 6e,Login,s_N2nn3nex8JobLoginE_0449e4f0,"ds ""N2nn3nex8JobLoginE"""
+044940d1,4c 6f 67 69 6e,Login,,"ds ""N2nn3pia3nex11NexLoginJobE"""
+043abd71,4c 6f 67 69 6e,Login,,"ds ""RendezVousLogin"""
+04420396,6c 6f 67 69 6e,login,,"ds ""login"""

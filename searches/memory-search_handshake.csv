@@ -1,0 +1,2 @@
+Location,Match Bytes,Match Value,Label,Code Unit
+0424a446,48 61 6e 64 73 68 61 6b 65,Handshake,,"ds ""nnsslConnectionDoHandshakeWithCertBuffer"""

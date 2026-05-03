@@ -1,0 +1,8 @@
+Location,Match Value,Depth,Terminal,Ref Type,Operand Index,From Address,From Offset,From Code Unit,Function Address,Function Offset,Function Name,Function Symbol,Function Demangled,Function Namespace,Function Signature,Function Size,Function Basic Blocks,Function Incoming Refs,Function Decompile Path,Function CFG Path,Function Clone Hash,Function Fingerprint,Function Referenced By,Path
+042a1484,Migration,1,1,READ,1,00439068,0x439068,"ldr x8,[x8]",,,,,,,,0,0,0,,,,,,042a1484 -> 00439068
+044314c0,Migration,1,1,DATA,0,0018a5a0,0x18a5a0,"str x8,[x19, #0x40]",,,,,,,,0,0,0,,,,,,044314c0 -> 0018a5a0
+04452f82,Migration,1,1,PARAM,0,0022065c,0x22065c,"add x1,x1,#0xf82",,,,,,,,0,0,0,,,,,,04452f82 -> 0022065c
+04498d90,Migration,1,0,DATA,0,039f3290,0x39f3290,addr 04498d90,,,,,,,,0,0,0,,,,,,04498d90 -> 039f3290
+043de435,Migration,1,1,PARAM,0,0013427c,0x13427c,"add x1,x1,#0x435",00133fe0,0x133fe0,FUN_00133fe0,,,Global,"undefined __cdecl FUN_00133fe0(undefined1[16] param_1, undefined1[16] param_2, float param_3, undefined1[16] param_4, undefined1[16] param_5, undefined1[16] param_6, undefined1[16] param_7, long * param_8, long param_9, uint param_10, undefined8 param_11, undefined8 param_12, undefined8 param_13, undefined8 param_14, undefined8 param_15)",3124,168,1,decompiled/FUN_00133fe0__00133fe0.c,decompiled/FUN_00133fe0__00133fe0.mmd,a2d46eb98b97f514,ff4304d1fc5b00f9fa670ca9f85f0da9f6570ea9f44f0fa9fd7b10a9fd030491,,043de435 -> 0013427c
+0436a762,Migration,1,1,PARAM,0,00165804,0x165804,"add x1,x1,#0x762",,,,,,,,0,0,0,,,,,,0436a762 -> 00165804
+04452fff,Migration,1,0,BRUTE_PTR,-1,03a727f0,0x3a727f0,?? FFh,,,,,,,,0,0,0,,,,,,04452fff -> 03a727f0

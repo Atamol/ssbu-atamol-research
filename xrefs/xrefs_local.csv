@@ -1,0 +1,37 @@
+Location,Match Value,Depth,Terminal,Ref Type,Operand Index,From Address,From Offset,From Code Unit,Function Address,Function Offset,Function Name,Function Symbol,Function Demangled,Function Namespace,Function Signature,Function Size,Function Basic Blocks,Function Incoming Refs,Function Decompile Path,Function CFG Path,Function Clone Hash,Function Fingerprint,Function Referenced By,Path
+04498d10,Local,1,0,DATA,0,039f3218,0x39f3218,addr 04498d10,,,,,,,,0,0,0,,,,,,04498d10 -> 039f3218
+04499000,Local,1,1,DATA,1,00177094,0x177094,"adrp x10,0x4499000",,,,,,,,0,0,0,,,,,,04499000 -> 00177094
+04499000,Local,1,1,DATA,1,001840fc,0x1840fc,"adrp x10,0x4499000",,,,,,,,0,0,0,,,,,,04499000 -> 001840fc
+04499000,Local,1,1,DATA,1,001861a0,0x1861a0,"adrp x9,0x4499000",00186140,0x186140,FUN_00186140,,,Global,undefined8 __cdecl FUN_00186140(long param_1),148,9,0,decompiled/FUN_00186140__00186140.c,decompiled/FUN_00186140__00186140.mmd,fcab55095ba5ca3d,ff8301d1f51b00f9f44f04a9fd7b05a9fd430191f30300aa148045a989a24039,,04499000 -> 001861a0
+04499000,Local,1,1,DATA,1,001a69b0,0x1a69b0,"adrp x9,0x4499000",001a6960,0x1a6960,FUN_001a6960,,,Global,undefined FUN_001a6960(void),260,9,4,,decompiled/FUN_001a6960__001a6960.mmd,,ff4305d1fc5f11a9f65712a9f44f13a9fd7b14a9fd030591f68702b0d6fa46f9,,04499000 -> 001a69b0
+04499000,Local,1,1,DATA,1,001b7844,0x1b7844,"adrp x9,0x4499000",001b77e0,0x1b77e0,FUN_001b77e0,,,Global,"ulong * __cdecl FUN_001b77e0(undefined1[16] param_1, undefined1[16] param_2, float param_3, undefined1[16] param_4, undefined1[16] param_5, undefined1[16] param_6, undefined1[16] param_7, ulong * param_8, ulong * param_9)",148,8,27,decompiled/FUN_001b77e0__001b77e0.c,decompiled/FUN_001b77e0__001b77e0.mmd,d51d575631875c38,ffc301d1f71b00f9f65704a9f44f05a9fd7b06a9fd830191f30300aa1f0001eb,,04499000 -> 001b7844
+04499000,Local,1,1,DATA,1,001b7df8,0x1b7df8,"adrp x9,0x4499000",001b7da0,0x1b7da0,FUN_001b7da0,,,Global,"long * __cdecl FUN_001b7da0(undefined1[16] param_1, undefined1[16] param_2, float param_3, undefined1[16] param_4, undefined1[16] param_5, undefined1[16] param_6, undefined1[16] param_7, long * param_8, long * param_9)",128,10,4,decompiled/FUN_001b7da0__001b7da0.c,decompiled/FUN_001b7da0__001b7da0.mmd,3efda70051b0bfdd,f44fbea9fd7b01a9fd430091f30300aa1f0001eb20030054680a40b9f40301aa,,04499000 -> 001b7df8
+04499000,Local,1,1,DATA,1,001ba644,0x1ba644,"adrp x9,0x4499000",001ba630,0x1ba630,FUN_001ba630,,,Global,"undefined __cdecl FUN_001ba630(undefined1[16] param_1, undefined1[16] param_2, undefined1[16] param_3, undefined1[16] param_4, undefined1[16] param_5, undefined1[16] param_6, undefined1[16] param_7, long * param_8, long * param_9, size_t param_10, undefined8 param_11, undefined8 param_12, undefined8 param_13, undefined8 param_14, undefined8 param_15)",60,5,3,decompiled/FUN_001ba630__001ba630.c,decompiled/FUN_001ba630__001ba630.mmd,b71f776b1d680bbf,280040f909014039286d01511f810071e8000054e91602f029b127912879a8b8,,04499000 -> 001ba644
+043174bf,Local,1,1,READ,1,002a91d4,0x2a91d4,"ldrb w11,[x10]",002a8b80,0x2a8b80,FUN_002a8b80,,,Global,"undefined8 __cdecl FUN_002a8b80(undefined1[16] param_1, undefined1[16] param_2, float param_3, undefined1[16] param_4, undefined1[16] param_5, undefined1[16] param_6, undefined1[16] param_7, long param_8, long param_9, size_t param_10, undefined8 param_11, undefined8 param_12, undefined8 param_13, undefined8 param_14, undefined8 param_15)",2232,98,1,decompiled/FUN_002a8b80__002a8b80.c,decompiled/FUN_002a8b80__002a8b80.mmd,31d4ad014e92ee47,ff8303d1fa6709a9f85f0aa9f6570ba9f44f0ca9fd7b0da9fd430391e8031832,,043174bf -> 002a91d4
+04420731,Local,1,1,DATA,0,001a73a4,0x1a73a4,"str x8,[x19, #0x40]",,,,,,,,0,0,0,,,,,,04420731 -> 001a73a4
+043bca44,Local,1,1,DATA,0,0018ac2c,0x18ac2c,"str x8,[x19, #0x40]",,,,,,,,0,0,0,,,,,,043bca44 -> 0018ac2c
+043eeec3,Local,1,1,PARAM,0,00211dd4,0x211dd4,"add x0,x0,#0xec3",00211630,0x211630,FUN_00211630,,,Global,"undefined8 __cdecl FUN_00211630(undefined1[16] param_1, undefined1[16] param_2, float param_3, undefined1[16] param_4, undefined1[16] param_5, undefined1[16] param_6, undefined1[16] param_7, undefined8 param_8, long param_9)",276,12,2,decompiled/FUN_00211630__00211630.c,decompiled/FUN_00211630__00211630.mmd,88155237578cec58,ffc300d1f44f01a9fd7b02a9fd83009128c04079f30301aa3f7800f93f7000f9,,043eeec3 -> 00211dd4
+043eeec3,Local,1,1,PARAM,0,0020f77c,0x20f77c,"add x0,x0,#0xec3",,,,,,,,0,0,0,,,,,,043eeec3 -> 0020f77c
+043eeec3,Local,1,1,PARAM,0,0020f7cc,0x20f7cc,"add x0,x0,#0xec3",,,,,,,,0,0,0,,,,,,043eeec3 -> 0020f7cc
+043eeec3,Local,1,1,PARAM,0,0020f81c,0x20f81c,"add x0,x0,#0xec3",,,,,,,,0,0,0,,,,,,043eeec3 -> 0020f81c
+043eeec3,Local,1,1,PARAM,0,0020f660,0x20f660,"add x0,x0,#0xec3",,,,,,,,0,0,0,,,,,,043eeec3 -> 0020f660
+043eeec3,Local,1,1,PARAM,0,00210994,0x210994,"add x0,x0,#0xec3",,,,,,,,0,0,0,,,,,,043eeec3 -> 00210994
+043eeec3,Local,1,1,PARAM,0,00210b60,0x210b60,"add x0,x0,#0xec3",,,,,,,,0,0,0,,,,,,043eeec3 -> 00210b60
+043eeec3,Local,1,1,PARAM,0,002111cc,0x2111cc,"add x0,x0,#0xec3",00210f70,0x210f70,FUN_00210f70,,,Global,undefined FUN_00210f70(void),380,21,1,,decompiled/FUN_00210f70__00210f70.mmd,,fb0f1af8fa6701a9f85f02a9f65703a9f44f04a9fd7b05a9fd4301917fcc0071,,043eeec3 -> 002111cc
+043eeec3,Local,1,1,PARAM,0,00212cf0,0x212cf0,"add x0,x0,#0xec3",002129e0,0x2129e0,FUN_002129e0,,,Global,"undefined8 __cdecl FUN_002129e0(undefined1[16] param_1, undefined1[16] param_2, float param_3, undefined1[16] param_4, undefined1[16] param_5, undefined1[16] param_6, undefined1[16] param_7, undefined8 param_8, long param_9)",864,27,1,decompiled/FUN_002129e0__002129e0.c,decompiled/FUN_002129e0__002129e0.mmd,0ca78334a63b4b46,ffc300d1f44f01a9fd7b02a9fd83009128c04079f30301aa3f7800f93f7000f9,,043eeec3 -> 00212cf0
+04452f43,Local,1,0,DATA,0,039f8108,0x39f8108,addr 04452f43,,,,,,,,0,0,0,,,,,,04452f43 -> 039f8108
+042d478d,Local,1,0,DATA,0,039f8120,0x39f8120,addr 042d478d,,,,,,,,0,0,0,,,,,,042d478d -> 039f8120
+044207f2,Local,1,1,PARAM,0,0020231c,0x20231c,"mov x1,x21",,,,,,,,0,0,0,,,,,,044207f2 -> 0020231c
+044207f2,Local,1,1,PARAM,0,002023f0,0x2023f0,"mov x1,x21",,,,,,,,0,0,0,,,,,,044207f2 -> 002023f0
+044207f2,Local,1,1,PARAM,0,00202cdc,0x202cdc,"mov x1,x21",,,,,,,,0,0,0,,,,,,044207f2 -> 00202cdc
+044207f2,Local,1,1,PARAM,0,00202d90,0x202d90,"mov x1,x21",,,,,,,,0,0,0,,,,,,044207f2 -> 00202d90
+04498e20,Local,1,1,DATA,1,001836b8,0x1836b8,"ldrsw x9,[x10, x9, LSL #0x2]",,,,,,,,0,0,0,,,,,,04498e20 -> 001836b8
+04498e00,Local,1,0,DATA,0,039f3410,0x39f3410,addr 04498e00,,,,,,,,0,0,0,,,,,,04498e00 -> 039f3410
+044987d0,Local,1,0,DATA,0,039efb10,0x39efb10,addr 044987d0,,,,,,,,0,0,0,,,,,,044987d0 -> 039efb10
+04499140,Local,1,0,DATA,0,039f4a78,0x39f4a78,addr 04499140,,,,,,,,0,0,0,,,,,,04499140 -> 039f4a78
+04498920,Local,1,1,DATA,1,00176d60,0x176d60,"ldrsw x9,[x10, x9, LSL #0x2]",,,,,,,,0,0,0,,,,,,04498920 -> 00176d60
+04498e70,Local,1,0,DATA,0,039f36e0,0x39f36e0,addr 04498e70,,,,,,,,0,0,0,,,,,,04498e70 -> 039f36e0
+04498c00,Local,1,0,DATA,0,039f2390,0x39f2390,addr 04498c00,,,,,,,,0,0,0,,,,,,04498c00 -> 039f2390
+044989d0,Local,1,0,DATA,0,039f0860,0x39f0860,addr 044989d0,,,,,,,,0,0,0,,,,,,044989d0 -> 039f0860
+04499030,Local,1,0,DATA,0,039f3fc8,0x39f3fc8,addr 04499030,,,,,,,,0,0,0,,,,,,04499030 -> 039f3fc8
+0425dd57,local,1,1,PARAM,0,01a1b818,0x1a1b818,"add x1,x1,#0xd57",,,,,,,,0,0,0,,,,,,0425dd57 -> 01a1b818

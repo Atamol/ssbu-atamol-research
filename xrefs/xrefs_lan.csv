@@ -1,0 +1,8 @@
+Location,Match Value,Depth,Terminal,Ref Type,Operand Index,From Address,From Offset,From Code Unit,Function Address,Function Offset,Function Name,Function Symbol,Function Demangled,Function Namespace,Function Signature,Function Size,Function Basic Blocks,Function Incoming Refs,Function Decompile Path,Function CFG Path,Function Clone Hash,Function Fingerprint,Function Referenced By,Path
+04338731,Lan,1,0,DATA,0,03a19e28,0x3a19e28,addr 04338731,,,,,,,,0,0,0,,,,,,04338731 -> 03a19e28
+043dd333,Lan,1,0,DATA,0,03daf5a0,0x3daf5a0,addr 043dd333,,,,,,,,0,0,0,,,,,,043dd333 -> 03daf5a0
+043dd333,Lan,1,0,DATA,0,03db0548,0x3db0548,addr 043dd333,,,,,,,,0,0,0,,,,,,043dd333 -> 03db0548
+043bbab4,lan,1,0,DATA,0,03e4ca88,0x3e4ca88,addr 043bbab4,,,,,,,,0,0,0,,,,,,043bbab4 -> 03e4ca88
+0438a056,lan,1,0,DATA,0,03e55668,0x3e55668,addr 0438a056,,,,,,,,0,0,0,,,,,,0438a056 -> 03e55668
+043dd37e,lan,1,0,BRUTE_PTR,-1,03e1e9c0,0x3e1e9c0,?? 7Eh    ~,,,,,,,,0,0,0,,,,,,043dd37e -> 03e1e9c0
+043bb6b7,lan,1,1,DATA,1,00434b1c,0x434b1c,"stp x9,x10,[x0, #0x70]",,,,,,,,0,0,0,,,,,,043bb6b7 -> 00434b1c

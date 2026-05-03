@@ -1,0 +1,2 @@
+Location,Match Value,Depth,Terminal,Ref Type,Operand Index,From Address,From Offset,From Code Unit,Function Address,Function Offset,Function Name,Function Symbol,Function Demangled,Function Namespace,Function Signature,Function Size,Function Basic Blocks,Function Incoming Refs,Function Decompile Path,Function CFG Path,Function Clone Hash,Function Fingerprint,Function Referenced By,Path
+04473a60,Mac,1,0,DATA,0,039d4630,0x39d4630,addr 04473a60,,,,,,,,0,0,0,,,,,,04473a60 -> 039d4630

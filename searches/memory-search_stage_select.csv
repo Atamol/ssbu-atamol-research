@@ -1,0 +1,9 @@
+Location,Match Bytes,Match Value,Label,Code Unit
+0427f772,73 74 61 67 65 5f 73 65 6c 65 63 74,stage_select,,"ds ""anim_stage_select"""
+0425e40d,73 74 61 67 65 5f 73 65 6c 65 63 74,stage_select,,"ds ""bg_banner_stage_select"""
+042908dd,73 74 61 67 65 5f 73 65 6c 65 63 74,stage_select,,"ds ""mel_stage_select_art_n"""
+0429096d,73 74 61 67 65 5f 73 65 6c 65 63 74,stage_select,,"ds ""mel_stage_select_battlefield"""
+04307265,73 74 61 67 65 5f 73 65 6c 65 63 74,stage_select,,"ds ""mel_stage_select_end"""
+0436b01c,73 74 61 67 65 5f 73 65 6c 65 63 74,stage_select,,"ds ""mel_stage_select_medal_n"""
+04338f1f,73 74 61 67 65 5f 73 65 6c 65 63 74,stage_select,,"ds ""mel_stage_select_normal"""
+04421019,73 74 61 67 65 5f 73 65 6c 65 63 74,stage_select,,"ds ""mel_stage_select_song_n"""

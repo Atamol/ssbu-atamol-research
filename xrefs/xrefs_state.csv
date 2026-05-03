@@ -1,0 +1,11 @@
+Location,Match Value,Depth,Terminal,Ref Type,Operand Index,From Address,From Offset,From Code Unit,Function Address,Function Offset,Function Name,Function Symbol,Function Demangled,Function Namespace,Function Signature,Function Size,Function Basic Blocks,Function Incoming Refs,Function Decompile Path,Function CFG Path,Function Clone Hash,Function Fingerprint,Function Referenced By,Path
+044200af,State,1,0,DATA,0,040bbae0,0x40bbae0,addr 044200af,,,,,,,,0,0,0,,,,,,044200af -> 040bbae0
+043cdaef,State,1,1,PARAM,0,01716198,0x1716198,"add x1,x1,#0xaef",,,,,,,,0,0,0,,,,,,043cdaef -> 01716198
+0485d410,State,1,0,DATA,0,040b07a0,0x40b07a0,addr 0485d410,,,,,,,,0,0,0,,,,,,0485d410 -> 040b07a0
+04441555,State,1,0,BRUTE_PTR,-1,047ae89c,0x47ae89c,?? 55h    U,,,,,,,,0,0,0,,,,,,04441555 -> 047ae89c
+04441555,State,1,0,BRUTE_PTR,-1,047ca76c,0x47ca76c,?? 55h    U,,,,,,,,0,0,0,,,,,,04441555 -> 047ca76c
+043bcce5,State,1,0,DATA,0,03cb1668,0x3cb1668,addr 043bcce5,,,,,,,,0,0,0,,,,,,043bcce5 -> 03cb1668
+0438abe1,State,1,1,PARAM,0,00036500,0x36500,"add x1,x1,#0xbe1",,,,,,,,0,0,0,,,,,,0438abe1 -> 00036500
+0434847c,State,1,1,PARAM,0,0009a5e8,0x9a5e8,"mov x0,x23",0009a3a0,0x9a3a0,FUN_0009a3a0,,,Global,"undefined __cdecl FUN_0009a3a0(undefined1[16] param_1, undefined1[16] param_2, float param_3, undefined1[16] param_4, undefined1[16] param_5, undefined1[16] param_6, undefined1[16] param_7, long param_8, long param_9)",664,31,1,decompiled/FUN_0009a3a0__0009a3a0.c,decompiled/FUN_0009a3a0__0009a3a0.mmd,b60ca97b1247dda3,ff4301d1f85f01a9f65702a9f44f03a9fd7b04a9fd030191280840b92900088b,,0434847c -> 0009a5e8
+04338307,State,1,1,PARAM,0,000371cc,0x371cc,"add x1,x1,#0x307",,,,,,,,0,0,0,,,,,,04338307 -> 000371cc
+04338307,State,1,1,PARAM,0,037fab94,0x37fab94,"add x1,x1,#0x307",,,,,,,,0,0,0,,,,,,04338307 -> 037fab94

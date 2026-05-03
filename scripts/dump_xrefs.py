@@ -77,6 +77,10 @@ INCLUDE_GLOBALS_ACCESS = True
 INCLUDE_NAME_HINTS = True
 INCLUDE_BRUTE_REFS = True       # scan data blocks for raw pointers Ghidra missed
 BRUTE_REFS_PTR_SIZE = 8         # ARM64
+INCLUDE_HASH40 = True           # detect hash40 constants loaded via MOVZ/MOVK pairs
+INCLUDE_HASH40_FULL_SCAN = True # also scan every function in the binary, not only xref-reached ones
+HASH40_LABELS_CSV = "../SSBU-Dump-Scripts/ParamLabels.csv"
+HASH40_LOADS_PER_FUNC = 32
 NRO_BASE_OVERRIDE = None      # None -> currentProgram.getImageBase()
 
 # external function-name databases (sibling repos, etc). Each entry:
@@ -148,6 +152,7 @@ _fingerprint_cache = {}
 _constants_cache = {}
 _consumer_refs = {}    # mangled -> set of consumer labels
 _brute_ptr_index = {}  # target_offset_int -> [from_addr_str, ...]
+_hash40_labels = {}    # int -> label string
 _external_names = {}   # offset_int -> [(label, name), ...]
 _external_size_index = []  # sorted list of (addr, size, name, label)
 _external_size_addrs = []  # sorted addrs (for bisect)
@@ -520,6 +525,164 @@ def hex_fingerprint(func):
     return fp
 
 
+def compute_hash40(s):
+    """Smash hash40: (length << 32) | crc32(lowercase bytes)"""
+    if not s:
+        return 0
+    try:
+        import zlib
+        b = s.lower().encode("utf-8")
+        return (len(b) << 32) | (zlib.crc32(b) & 0xffffffff)
+    except Exception:
+        return 0
+
+
+_HASH40_KEY_RE = re.compile(r"^[A-Za-z][A-Za-z0-9_]{2,79}$")
+
+
+def load_hash40_labels(root):
+    """Read ParamLabels.csv into _hash40_labels.
+    First column is hex hash40 (with or without 0x), second is the label"""
+    if not INCLUDE_HASH40:
+        return 0
+    path = os.path.normpath(os.path.join(root, HASH40_LABELS_CSV))
+    if not os.path.isfile(path):
+        print("hash40: missing {0}".format(path))
+        return 0
+    cnt = 0
+    try:
+        f = open(path, "rb")
+        try:
+            reader = csv.reader(f)
+            for row in reader:
+                if len(row) < 2:
+                    continue
+                raw = row[0].strip()
+                label = row[1].strip()
+                if not raw or not label:
+                    continue
+                try:
+                    h = int(raw, 16)
+                except ValueError:
+                    continue
+                _hash40_labels[h] = label
+                cnt += 1
+        finally:
+            f.close()
+    except Exception as e:
+        print("hash40: error reading {0}: {1}".format(path, e))
+        return 0
+    print("hash40: {0} labels loaded from ParamLabels".format(cnt))
+    return cnt
+
+
+def add_search_hashes_to_labels(searches_dir):
+    """Compute hash40 for identifier-like Match Values across every search CSV
+    and add new entries to _hash40_labels so any function loading that hash is
+    automatically labeled with the original string"""
+    if not INCLUDE_HASH40:
+        return 0
+    cnt = 0
+    pat = re.compile(r"^memory-search_(.+)\.csv$")
+    for name in sorted(os.listdir(searches_dir)):
+        if name == "memory-search_all.csv":
+            continue
+        if not pat.match(name):
+            continue
+        path = os.path.join(searches_dir, name)
+        try:
+            f = open(path, "rb")
+            try:
+                reader = csv.reader(f)
+                header = next(reader, None)
+                if header is None:
+                    continue
+                mv_idx = None
+                for i, h in enumerate(header):
+                    if h.strip().lower() == "match value":
+                        mv_idx = i
+                        break
+                if mv_idx is None:
+                    continue
+                for row in reader:
+                    if len(row) <= mv_idx:
+                        continue
+                    s = row[mv_idx].strip()
+                    if not s or not _HASH40_KEY_RE.match(s):
+                        continue
+                    h = compute_hash40(s)
+                    if h and h not in _hash40_labels:
+                        _hash40_labels[h] = s
+                        cnt += 1
+            finally:
+                f.close()
+        except Exception:
+            continue
+    print("hash40: {0} additional labels from search CSVs".format(cnt))
+    return cnt
+
+
+def _decode_mov_imm(ins):
+    """Decode an ARM64 MOVZ or MOVK instruction. Returns (shifted_imm, reg_str, opc)
+    or None for non-MOVZ/MOVK instructions. opc is 2 for MOVZ, 3 for MOVK"""
+    try:
+        bs = ins.getBytes()
+        if len(bs) != 4:
+            return None
+        word = ((bs[3] & 0xff) << 24) | ((bs[2] & 0xff) << 16) | \
+               ((bs[1] & 0xff) << 8) | (bs[0] & 0xff)
+        # MOVZ/MOVK opcode signature: bits[28:23] = 0b100101
+        if ((word >> 23) & 0x3f) != 0x25:
+            return None
+        opc = (word >> 29) & 0x3
+        if opc not in (2, 3):
+            return None
+        sf = (word >> 31) & 1
+        rd = word & 0x1f
+        imm16 = (word >> 5) & 0xffff
+        hw = (word >> 21) & 0x3
+        prefix = "x" if sf else "w"
+        return (imm16 << (hw * 16), prefix + str(rd), opc)
+    except Exception:
+        return None
+
+
+def hash40_loads_in_func(func):
+    """Walk the function body and detect MOVZ + MOVK[+MOVK] sequences whose
+    accumulated value matches a known hash40. Returns list of (start_addr_str,
+    value_int, label)"""
+    if not INCLUDE_HASH40 or not _hash40_labels:
+        return []
+    listing = currentProgram.getListing()
+    body = func.getBody()
+    pending = {}
+    found = []
+    seen = set()
+    itr = listing.getInstructions(body, True)
+    while itr.hasNext():
+        ins = itr.next()
+        decoded = _decode_mov_imm(ins)
+        if decoded is None:
+            continue
+        imm, reg, opc = decoded
+        if opc == 2:
+            pending[reg] = (imm, ins.getAddress())
+        else:
+            if reg not in pending:
+                continue
+            cur_val, start_addr = pending[reg]
+            cur_val |= imm
+            pending[reg] = (cur_val, start_addr)
+            if cur_val in _hash40_labels:
+                key = (str(start_addr), cur_val)
+                if key not in seen:
+                    seen.add(key)
+                    found.append((str(start_addr), cur_val, _hash40_labels[cur_val]))
+                    if len(found) >= HASH40_LOADS_PER_FUNC:
+                        break
+    return found
+
+
 def collect_consumer_refs(root):
     """Scan each path in CONSUMER_SOURCES for text matching mangled C++ symbols
     (Itanium ABI) and credit each occurrence to a label derived from the
@@ -886,6 +1049,7 @@ def func_info(func, decomp_dir):
     globals_acc = globals_accessed_in_func(func)
     asm_path = write_disasm_file(decomp_dir, func) if INCLUDE_DISASM else ""
     ext_names = external_names_for(entry.getOffset(), func.getBody().getNumAddresses())
+    hash40s = hash40_loads_in_func(func)
     info = {
         "addr": entry,
         "addr_str": str(entry),
@@ -913,6 +1077,7 @@ def func_info(func, decomp_dir):
         "globals": globals_acc,
         "asm_path": asm_path,
         "external_names": ext_names,
+        "hash40_loads": hash40s,
     }
     _func_info_cache[key] = info
     return info
@@ -929,7 +1094,7 @@ def empty_func_info():
         "cfg_path": "", "clone_hash": "",
         "fingerprint": "", "constants": [], "referenced_by": [],
         "comments": [], "globals": [], "asm_path": "",
-        "external_names": [],
+        "external_names": [], "hash40_loads": [],
     }
 
 
@@ -1082,6 +1247,7 @@ FUNCS_HEADER = [
     "External Names", "Suggested Name",
     "Hit Count", "Match Values", "Strings In Body",
     "Struct Accesses", "Constants", "Globals Accessed", "Comments",
+    "Hash40 Loads",
     "Callers", "Callees",
 ]
 
@@ -1130,6 +1296,10 @@ def write_func_row(w, b, root, prepend=None):
         join_unique(b.get("constants", []), limit=CONSTANTS_PER_FUNC),
         join_unique(b.get("globals", []), limit=CALLS_PER_FUNC),
         join_unique(b.get("comments", []), limit=32),
+        join_unique([
+            "0x{0:x}:{1}".format(v, label)
+            for _, v, label in b.get("hash40_loads", [])
+        ], limit=HASH40_LOADS_PER_FUNC),
         join_unique(b["callers"], limit=CALLS_PER_FUNC),
         join_unique(b["callees"], limit=CALLS_PER_FUNC),
     ]
@@ -1959,6 +2129,59 @@ def write_string_xrefs(out_path):
     return cnt
 
 
+def write_hash40_loads_table(out_path):
+    """Aggregate hash40 loads. Pulls from analyzed funcs first, then optionally
+    scans every function in the binary that was not already covered"""
+    if not INCLUDE_HASH40 or not _hash40_labels:
+        return 0
+    f = open(out_path, "wb")
+    cnt = 0
+    try:
+        w = csv.writer(f)
+        w.writerow([
+            "Hash40 Hex", "Label", "Source", "Function Address",
+            "Function Name", "Function Symbol", "Function Demangled",
+            "Load Address",
+        ])
+        rows = []
+        seen_funcs = set()
+        for k, info in _func_info_cache.items():
+            seen_funcs.add(info["addr_str"])
+            for load_addr, value, label in info.get("hash40_loads", []):
+                rows.append((value, label, "xref", info["addr_str"], info["name"],
+                             info["mangled"], info["demangled"], load_addr))
+        if INCLUDE_HASH40_FULL_SCAN:
+            fm = currentProgram.getFunctionManager()
+            scanned = 0
+            extra_rows = 0
+            for func in fm.getFunctions(True):
+                entry_str = str(func.getEntryPoint())
+                if entry_str in seen_funcs:
+                    continue
+                scanned += 1
+                loads = hash40_loads_in_func(func)
+                if not loads:
+                    continue
+                mangled = find_mangled_at(func.getEntryPoint())
+                demangled = demangle(mangled) if mangled else ""
+                for load_addr, value, label in loads:
+                    rows.append((value, label, "scan", entry_str, func.getName(True),
+                                 mangled, demangled, load_addr))
+                    extra_rows += 1
+            print("hash40 full scan: scanned {0} extra funcs, added {1} loads".format(
+                scanned, extra_rows))
+        rows.sort(key=lambda r: (r[1], r[0]))
+        for value, label, source, fn_addr, fn_name, fn_sym, fn_demangled, load_addr in rows:
+            w.writerow([
+                "0x{0:x}".format(value), label, source, fn_addr, fn_name,
+                fn_sym, fn_demangled, load_addr,
+            ])
+            cnt += 1
+    finally:
+        f.close()
+    return cnt
+
+
 def write_segments(out_path):
     if not INCLUDE_SEGMENTS:
         return 0
@@ -2157,6 +2380,7 @@ def main():
     print("globals acc  = {0}".format(INCLUDE_GLOBALS_ACCESS))
     print("name hints   = {0}".format(INCLUDE_NAME_HINTS))
     print("brute refs   = {0}".format(INCLUDE_BRUTE_REFS))
+    print("hash40       = {0}".format(INCLUDE_HASH40))
     print("ext name dbs = {0}".format(len(EXTERNAL_NAME_CSVS)))
     print("fingerprint  = {0}".format(INCLUDE_FINGERPRINT))
     print("constants    = {0}".format(INCLUDE_CONSTANTS))
@@ -2165,6 +2389,10 @@ def main():
 
     if EXTERNAL_NAME_CSVS:
         load_external_names(root)
+
+    if INCLUDE_HASH40:
+        load_hash40_labels(root)
+        add_search_hashes_to_labels(dirs["searches"])
 
     global _consumer_refs
     _consumer_refs = collect_consumer_refs(root)
@@ -2260,6 +2488,10 @@ def main():
         if INCLUDE_STRING_XREFS:
             n = write_string_xrefs(os.path.join(dirs["tables"], "string_xrefs.csv"))
             print("string xref rows: {0}".format(n))
+
+        if INCLUDE_HASH40:
+            n = write_hash40_loads_table(os.path.join(dirs["tables"], "hash40_loads.csv"))
+            print("hash40 loads: {0}".format(n))
 
         if INCLUDE_SEGMENTS:
             n = write_segments(os.path.join(dirs["tables"], "segments.csv"))

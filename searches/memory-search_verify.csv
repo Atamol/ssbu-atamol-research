@@ -1,0 +1,5 @@
+Location,Match Bytes,Match Value,Label,Code Unit
+0437a254,76 65 72 69 66 79,verify,,"ds ""--lua_verify"""
+0439b12f,56 45 52 49 46 59,VERIFY,,"ds ""CURLOPT_SSL_VERIFYHOST no longer supports 1 as value!"""
+0424a48f,56 65 72 69 66 79,Verify,,"ds ""nnsslConnectionGetVerifyCertError"""
+0424a56f,56 65 72 69 66 79,Verify,,"ds ""nnsslConnectionSetVerifyOption"""
