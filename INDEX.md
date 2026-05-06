@@ -53,6 +53,7 @@ Pattern: `xrefs/xrefs_<name>.csv` `funcs/funcs_<name>.csv` `reports/report_<name
 - [tables/clones.csv](tables/clones.csv)
 - [tables/constants.csv](tables/constants.csv)
 - [tables/enums.csv](tables/enums.csv)
+- [tables/hash40_data_refs.csv](tables/hash40_data_refs.csv)
 - [tables/hash40_loads.csv](tables/hash40_loads.csv)
 - [tables/imports.csv](tables/imports.csv)
 - [tables/namespaces.csv](tables/namespaces.csv)

@@ -13,7 +13,7 @@ Functions reached by current search set: **449**
 ## Connectivity
 - no known callers: **199** (entry-points or dead?)
 - no known callees: **2** (leaf functions)
-- decompile failed: **9**
+- decompile failed: **10**
 
 ## Top namespaces in reached set
 - `Global`: 439

@@ -1,9 +1,8 @@
 # -*- coding: utf-8 -*-
 # SSBU analysis database builder
 #
-# Reads every searches/memory-search_*.csv and dumps exhaustive analysis to
-# a self-contained, consumer-agnostic database. Any future development tool
-# can sit on top of these tables without re-running Ghidra
+# Reads every searches/memory-search_*.csv and dumps a full analysis DB
+# that any downstream tool can sit on top of without re-running Ghidra
 #
 # Project layout (relative to this script):
 #   ../searches/    inputs:  memory-search_<name>.csv
@@ -77,13 +76,18 @@ INCLUDE_GLOBALS_ACCESS = True
 INCLUDE_NAME_HINTS = True
 INCLUDE_BRUTE_REFS = True       # scan data blocks for raw pointers Ghidra missed
 BRUTE_REFS_PTR_SIZE = 8         # ARM64
+INCLUDE_STRING_TABLES = True    # detect pointer arrays of strings, propagate xrefs from the table base
+STRING_TABLE_MIN_ENTRIES = 4    # require at least N consecutive string pointers (real tables are typically much larger)
 INCLUDE_HASH40 = True           # detect hash40 constants loaded via MOVZ/MOVK pairs
 INCLUDE_HASH40_FULL_SCAN = True # also scan every function in the binary, not only xref-reached ones
 HASH40_LABELS_CSV = "../SSBU-Dump-Scripts/ParamLabels.csv"
+HASH40_EXTRA_LABEL_FILES = [    # plain text files, one identifier per line, hash40 computed automatically
+    "searches/known_hash40.txt",
+]
 HASH40_LOADS_PER_FUNC = 32
 NRO_BASE_OVERRIDE = None      # None -> currentProgram.getImageBase()
 
-# external function-name databases (sibling repos, etc). Each entry:
+# external function-name databases (related repos, etc). each entry:
 #   path: CSV path relative to project root
 #   addr_col: header name of the address column (or 0-based index)
 #   name_col: header name of the name column (or 0-based index)
@@ -152,6 +156,7 @@ _fingerprint_cache = {}
 _constants_cache = {}
 _consumer_refs = {}    # mangled -> set of consumer labels
 _brute_ptr_index = {}  # target_offset_int -> [from_addr_str, ...]
+_string_table_bases = {}  # pointer_slot_str -> (table_base_str, table_size)
 _hash40_labels = {}    # int -> label string
 _external_names = {}   # offset_int -> [(label, name), ...]
 _external_size_index = []  # sorted list of (addr, size, name, label)
@@ -573,6 +578,36 @@ def load_hash40_labels(root):
         print("hash40: error reading {0}: {1}".format(path, e))
         return 0
     print("hash40: {0} labels loaded from ParamLabels".format(cnt))
+    return cnt
+
+
+def load_hash40_extra_labels(root):
+    """Load plain text files where each line is one identifier. Compute hash40
+    for each and add to _hash40_labels. Lines starting with # are comments"""
+    if not INCLUDE_HASH40:
+        return 0
+    cnt = 0
+    for rel in HASH40_EXTRA_LABEL_FILES:
+        path = os.path.normpath(os.path.join(root, rel))
+        if not os.path.isfile(path):
+            continue
+        try:
+            f = open(path, "rb")
+            try:
+                for line in f:
+                    s = line.decode("utf-8", errors="replace").strip()
+                    if not s or s.startswith("#"):
+                        continue
+                    h = compute_hash40(s)
+                    if h and h not in _hash40_labels:
+                        _hash40_labels[h] = s
+                        cnt += 1
+            finally:
+                f.close()
+        except Exception:
+            continue
+    if cnt:
+        print("hash40: {0} extra labels from text files".format(cnt))
     return cnt
 
 
@@ -998,7 +1033,7 @@ def suggested_name_for(b):
     nm = b.get("name", "")
     if nm and not nm.split("::")[-1].startswith("FUN_"):
         return ""
-    # external databases first; prefer exact, then fuzzy
+    # external databases first, prefer exact then fuzzy
     for entry in b.get("external_names", []):
         if len(entry) >= 3 and entry[2] == "exact":
             return entry[1]
@@ -1170,6 +1205,105 @@ def build_brute_pointer_index(target_addr_strs):
     return hits
 
 
+def detect_string_tables():
+    """For each pointer slot found by brute scan, walk backward and forward to
+    find a contiguous run of 8-byte pointers that all point to defined string
+    data. If the run is long enough, record the table base. Walking xrefs of
+    the table base later recovers indirect references (string-table indexing)"""
+    if not INCLUDE_STRING_TABLES or not _brute_ptr_index:
+        return 0
+    listing = currentProgram.getListing()
+    mem = currentProgram.getMemory()
+    af = currentProgram.getAddressFactory()
+    ptr_size = 8
+
+    def points_to_string(addr_obj):
+        if addr_obj is None:
+            return False
+        try:
+            data = listing.getDataAt(addr_obj)
+            if data is None:
+                data = listing.getDataContaining(addr_obj)
+            if data is None:
+                return False
+            return data.hasStringValue()
+        except Exception:
+            return False
+
+    def addr_at_offset(slot_offset):
+        try:
+            return af.getAddress("{0:x}".format(slot_offset))
+        except Exception:
+            return None
+
+    seen_bases = {}  # base_addr_str -> size
+    detected = 0
+    visited_slots = set()
+    candidate_slots = set()
+    for from_strs in _brute_ptr_index.values():
+        for s in from_strs:
+            candidate_slots.add(s)
+    for slot_str in candidate_slots:
+        if slot_str in visited_slots:
+            continue
+        slot = af.getAddress(slot_str)
+        if slot is None:
+            continue
+        # walk backward
+        start = slot
+        while True:
+            try:
+                prev = start.subtract(ptr_size)
+            except Exception:
+                break
+            try:
+                v = mem.getLong(prev) & 0xffffffffffffffff
+            except Exception:
+                break
+            target = addr_at_offset(v)
+            if not points_to_string(target):
+                break
+            start = prev
+        # walk forward
+        end = slot
+        while True:
+            try:
+                nxt = end.add(ptr_size)
+            except Exception:
+                break
+            try:
+                v = mem.getLong(nxt) & 0xffffffffffffffff
+            except Exception:
+                break
+            target = addr_at_offset(v)
+            if not points_to_string(target):
+                break
+            end = nxt
+        # count entries from start to end inclusive
+        try:
+            length = (end.getOffset() - start.getOffset()) // ptr_size + 1
+        except Exception:
+            length = 1
+        if length < STRING_TABLE_MIN_ENTRIES:
+            continue
+        base_str = str(start)
+        # record every slot in this table so they all map to the same base
+        cur = start
+        for _ in range(length):
+            _string_table_bases[str(cur)] = (base_str, length)
+            visited_slots.add(str(cur))
+            try:
+                cur = cur.add(ptr_size)
+            except Exception:
+                break
+        if base_str not in seen_bases:
+            seen_bases[base_str] = length
+            detected += 1
+    print("string tables: {0} detected covering {1} pointer slots".format(
+        detected, len(_string_table_bases)))
+    return detected
+
+
 def walk(rm, target_addr, depth, visited, path, sink):
     if depth <= 0:
         return
@@ -1204,6 +1338,22 @@ def walk(rm, target_addr, depth, visited, path, sink):
                  from_addr, cu_str, terminal, new_path)
             if not terminal and depth > 1:
                 walk(rm, from_addr, depth - 1, visited, new_path, sink)
+            # 2b) if the slot belongs to a string table, also walk the base
+            if INCLUDE_STRING_TABLES:
+                tb = _string_table_bases.get(from_str)
+                if tb:
+                    base_str, _length = tb
+                    if base_str != from_str and base_str not in visited:
+                        visited.add(base_str)
+                        base_addr = to_addr(base_str)
+                        if base_addr is not None:
+                            cu_b, cu_b_str = code_unit_at(base_addr)
+                            terminal_b = is_instruction(cu_b) if cu_b is not None else False
+                            new_path_b = path + [from_str, base_str]
+                            sink(_SyntheticRef(base_addr, target_addr),
+                                 base_addr, cu_b_str, terminal_b, new_path_b)
+                            if not terminal_b and depth > 1:
+                                walk(rm, base_addr, depth - 1, visited, new_path_b, sink)
 
 
 def join_unique(items, limit=MAX_JOIN):
@@ -2129,6 +2279,93 @@ def write_string_xrefs(out_path):
     return cnt
 
 
+def scan_hash40_data_words():
+    """Scan initialized memory for 8-byte little-endian words matching any
+    known hash40. Used to find dispatch tables of the form { hash, fn_ptr }
+    where the hash is stored as raw data instead of being loaded by MOVZ/MOVK.
+    For each match, also probe the next 8 bytes for an adjacent function
+    pointer to identify the handler"""
+    if not INCLUDE_HASH40 or not _hash40_labels:
+        return []
+    mem = currentProgram.getMemory()
+    fm = currentProgram.getFunctionManager()
+    af = currentProgram.getAddressFactory()
+    target_set = set(_hash40_labels.keys())
+    found = []
+    stride = 4
+    for block in mem.getBlocks():
+        if not block.isInitialized():
+            continue
+        cur = block.getStart()
+        end = block.getEnd()
+        misalign = cur.getOffset() % stride
+        if misalign:
+            try:
+                cur = cur.add(stride - misalign)
+            except Exception:
+                continue
+        try:
+            while cur.compareTo(end) <= 0:
+                if cur.getOffset() % 8 == 0:
+                    try:
+                        v = mem.getLong(cur) & 0xffffffffffffffff
+                        if v in target_set:
+                            label = _hash40_labels[v]
+                            handler_addr = ""
+                            handler_name = ""
+                            handler_sym = ""
+                            try:
+                                next_addr = cur.add(8)
+                                ptr_val = mem.getLong(next_addr) & 0xffffffffffffffff
+                                if ptr_val:
+                                    cand = af.getAddress("{0:x}".format(ptr_val))
+                                    if cand is not None:
+                                        f = fm.getFunctionAt(cand)
+                                        if f is not None:
+                                            handler_addr = str(cand)
+                                            handler_name = f.getName(True)
+                                            handler_sym = find_mangled_at(cand)
+                            except Exception:
+                                pass
+                            found.append((str(cur), v, label, handler_addr,
+                                          handler_name, handler_sym))
+                    except Exception:
+                        pass
+                try:
+                    cur = cur.add(stride)
+                except Exception:
+                    break
+        except Exception:
+            continue
+    return found
+
+
+def write_hash40_data_refs_table(out_path):
+    """Save data-word hash40 occurrences for dispatch table style references"""
+    if not INCLUDE_HASH40 or not _hash40_labels:
+        return 0
+    rows = scan_hash40_data_words()
+    f = open(out_path, "wb")
+    cnt = 0
+    try:
+        w = csv.writer(f)
+        w.writerow([
+            "Hash40 Hex", "Label", "Data Address",
+            "Adjacent Handler Address", "Adjacent Handler Name",
+            "Adjacent Handler Symbol",
+        ])
+        rows.sort(key=lambda r: (r[2], r[1]))
+        for data_addr, value, label, h_addr, h_name, h_sym in rows:
+            w.writerow([
+                "0x{0:x}".format(value), label, data_addr,
+                h_addr, h_name, h_sym,
+            ])
+            cnt += 1
+    finally:
+        f.close()
+    return cnt
+
+
 def write_hash40_loads_table(out_path):
     """Aggregate hash40 loads. Pulls from analyzed funcs first, then optionally
     scans every function in the binary that was not already covered"""
@@ -2380,6 +2617,7 @@ def main():
     print("globals acc  = {0}".format(INCLUDE_GLOBALS_ACCESS))
     print("name hints   = {0}".format(INCLUDE_NAME_HINTS))
     print("brute refs   = {0}".format(INCLUDE_BRUTE_REFS))
+    print("string tables= {0}".format(INCLUDE_STRING_TABLES))
     print("hash40       = {0}".format(INCLUDE_HASH40))
     print("ext name dbs = {0}".format(len(EXTERNAL_NAME_CSVS)))
     print("fingerprint  = {0}".format(INCLUDE_FINGERPRINT))
@@ -2392,6 +2630,7 @@ def main():
 
     if INCLUDE_HASH40:
         load_hash40_labels(root)
+        load_hash40_extra_labels(root)
         add_search_hashes_to_labels(dirs["searches"])
 
     global _consumer_refs
@@ -2423,6 +2662,8 @@ def main():
         n = build_brute_pointer_index(all_locs)
         print("brute hits   = {0} pointer slots ({1} unique targets)".format(
             n, len(_brute_ptr_index)))
+        if INCLUDE_STRING_TABLES:
+            detect_string_tables()
 
     setup_decompiler()
     try:
@@ -2492,6 +2733,8 @@ def main():
         if INCLUDE_HASH40:
             n = write_hash40_loads_table(os.path.join(dirs["tables"], "hash40_loads.csv"))
             print("hash40 loads: {0}".format(n))
+            n = write_hash40_data_refs_table(os.path.join(dirs["tables"], "hash40_data_refs.csv"))
+            print("hash40 data refs: {0}".format(n))
 
         if INCLUDE_SEGMENTS:
             n = write_segments(os.path.join(dirs["tables"], "segments.csv"))

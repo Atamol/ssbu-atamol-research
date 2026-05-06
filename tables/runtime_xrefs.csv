@@ -1,0 +1,3 @@
+callee_offset,callee_name,caller_offset,caller_name,runtime_count,kind
+0x1d5ab30,friend,0x1d58120,FUN_01d58120,8,indirect_likely_approx
+0x1cce00,InitiateCall,0x205f10,FUN_00205f10,3,indirect_likely_approx

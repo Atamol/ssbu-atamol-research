@@ -1,0 +1,49 @@
+# Known hash40 identifiers for ssbu-atamol-research
+# 1 identifier per line, lines starting with # are comments
+# hash40 is computed automatically and added to the label dict so that
+# functions loading these hashes show up in tables/hash40_loads.csv
+
+# matchmaking / wait flow (Lua bind)
+sleep_parallel_matching
+is_parallel_matching
+set_waiting_frames
+get_waiting_frames
+wait_for_ack
+
+# online / session (Lua bind)
+is_online
+is_in_match
+is_match_started
+get_opponent
+get_local_player
+get_my_pid
+match_information
+is_local_play
+is_home
+is_visitor
+is_host
+
+# matching extras
+matchmake_session
+matchmake_party
+gathering_id
+quick_matching
+random_matching
+ranked_match
+preferred_match
+elite_match
+
+# state / flow
+ready_check
+ready_state
+session_start
+session_end
+match_start
+match_end
+forfeit
+join_session
+leave_session
+
+# popup / UI hooks (already in ParamLabels but listed for reference)
+# id_popup_online_connecting
+# id_popup_match_done
