@@ -1,6 +1,6 @@
 # ssbu-atamol-research
 
-スマブラSP静的解析データベース．Ghidraから大量のコンテキストを抽出し，あらゆる開発で再利用できる形で蓄積したもの．  
+スマブラSPの静的解析データベース．Ghidraから大量のコンテキストを抽出し，あらゆる開発で再利用できる形で蓄積したもの．  
 既存のプロジェクトも`CONSUMER_SOURCES`に追加すれば自動でクロスリファレンスされる．
 
 ## ディレクトリ構成
@@ -36,48 +36,48 @@
 │   ├── enums.csv                 列挙型の値 → 名前マッピング
 │   ├── segments.csv              メモリブロック (.text/.rodata/.data等)
 │   ├── imports.csv               外部モジュールから取り込んでいるシンボル
-│   └── hash40_loads.csv          MOVZ/MOVK で hash40 をロードしている全箇所 (識別子逆引き)
+│   └── hash40_loads.csv          MOVZ/MOVKでhash40をロードしている全箇所 (識別子逆引き)
 ├── rust-externs/                 Rust externブロック (<category>.rs, all.rs)
 └── decompiled/                   関数ごとのC擬似コード，Mermaid CFG，アセンブリ
 ```
 
-関連リポジトリ（兄弟ディレクトリ）:
-- `../ssbu-socket-sniffer` 本番防御 / ソケット監視 mod
-- `../ssbu-call-sniffer` 動的解析用 mod．`scripts/generate_hooks.py` で本 DB から hook を自動生成する
+関連リポジトリ:
+- `../ssbu-socket-sniffer` 本番防御/ソケット監視mod
+- `../ssbu-call-sniffer` 動的解析用mod．`scripts/generate_hooks.py`で本DBからhookを自動生成．取得したログは`scripts/ingest_call_log.py`で`tables/runtime_xrefs.csv`に集計し，静的解析で見えなかった間接呼び出しを発見できる
 
 ## 使い方
 
-### 検索結果を更新するとき
+### 検索結果を更新
 
 1. Ghidraでmemory searchを実行
 2. 結果を`searches/memory-search_all.md`に追記 (`- <name>:`のあとにコードブロック)
 3. `python searches/split.py`でCSV一式を再生成
 
-### Ghidraで解析を回すとき
+### Ghidraで解析
 
 1. Ghidraで対象NRO/NSOを開く
 2. Script Managerで`scripts/`ディレクトリをManage Script Directoriesから追加
-3. `Search`カテゴリの`dump_xrefs.py`をRun
+3. `Search`カテゴリの`dump_xrefs.py`を実行
 
 走り終わるとINDEX.mdが更新され，全テーブル・全レポート・全decompileが揃う．
 
 ### 出力の使い分け
 
-- DB全体を見渡したい: `INDEX.md`
+- DB全体: `INDEX.md`
 - フックすべき関数: `reports/report_all.md`
 - 未参照のフック候補: `funcs/funcs_all.csv`を`Function Referenced By`列が空のものでフィルタ
 - コピペで作成可能なフックの骨格: `rust-externs/<category>.rs`
 - マングル名: `funcs/funcs_all.csv`の`Function Symbol`列
 - 関数の中身: `decompiled/<name>__<addr>.c`
-- 制御フローを目で追いたい: `decompiled/<name>__<addr>.mmd` (GitHubで直接描画)
+- 制御フロー: `decompiled/<name>__<addr>.mmd` (GitHubで直接描画)
 - 複数カテゴリにまたがる重要関数: `funcs/funcs_all.csv`の`Categories`列
-- クラス階層を知りたい: `tables/typeinfo.csv` + `tables/vtables.csv`
+- クラス階層: `tables/typeinfo.csv` + `tables/vtables.csv`
 - 構造体のレイアウト (`*(uint*)(this+0x28)`の正体): `tables/structs.csv`
 - enum値の意味を逆引き: `tables/enums.csv`
 - 定数値からその使用箇所を逆引き: `tables/constants.csv` (e.g. PRUDP packet ID, NEX error code)
-- 任意の文字列が触られているか: `tables/strings.csv`または`tables/string_xrefs.csv`
+- 任意の文字列について，それが触られているか: `tables/strings.csv`または`tables/string_xrefs.csv`
 - 特定の文字列を参照する全関数を一覧: `tables/string_xrefs.csv`でString Valueをフィルタ
-- hash40 識別子の実装関数: `tables/hash40_loads.csv` でラベル名 (例: `sleep_parallel_matching`) をフィルタ
+- hash40 識別子の実装関数: `tables/hash40_loads.csv`でラベル名 (例: `sleep_parallel_matching`) をフィルタ
 - メモリブロック・セクションの配置: `tables/segments.csv`
 - 外部モジュールに依存しているシンボル: `tables/imports.csv`
 - 名前空間ごとの規模感: `tables/namespaces.csv`
@@ -88,15 +88,15 @@
 - 解析の進捗を俯瞰: `reports/coverage.md`
 - バージョン更新時のsig-scan用バイト列: `Function Fingerprint`列 (先頭32バイト)
 - エラーコードやmagic number: `Constants`列
-- 関数が触っているグローバル変: `Globals Accessed`列
+- 関数が触っているグローバル変数: `Globals Accessed`列
 - 既存のGhidra注釈 (Pre/Post/EOL/Plate/Repeatable): `Comments`列
 - デコンパイル失敗時のフォールバック: `decompiled/<name>__<addr>.asm`
 - 未命名の`FUN_xxx`の名前候補: `Suggested Name`列
-- 重要関数の優先度判定: `Function Size`，`Function Basic Blocks`，`Function Incoming Refs`を組み合わせて判断
+- 重要関数の優先度判定: `Function Size`，`Function Basic Blocks`，`Function Incoming Refs`を組み合わせる
 
-### コンシューマプロジェクト連携
+### プロジェクト連携
 
-`scripts/dump_xrefs.py`の`CONSUMER_SOURCES`に他のプロジェクトのソースパスを追加すると，そこで使われているマングル名 (`_Z...`) を自動検出して`Function Referenced By`列に該当プロジェクト名が入る．既に活用済みのシンボルが一目で分かる仕組み．
+`scripts/dump_xrefs.py`の`CONSUMER_SOURCES`に他のプロジェクトのソースパスを追加すると，そこで使われているマングル名 (`_Z...`) を自動検出して`Function Referenced By`列に該当プロジェクト名が入る．既に活用済みのシンボルが一目で分かる．
 
 ```python
 CONSUMER_SOURCES = [
@@ -122,11 +122,11 @@ CONSUMER_SOURCES = [
 - `INCLUDE_STRUCTS_CATALOG` / `INCLUDE_ENUMS_CATALOG`
 - `INCLUDE_STRING_XREFS` / `INCLUDE_SEGMENTS` / `INCLUDE_IMPORTS`
 - `INCLUDE_DISASM` / `INCLUDE_COMMENTS` / `INCLUDE_GLOBALS_ACCESS`
-- `INCLUDE_NAME_HINTS`:
-- `INCLUDE_BRUTE_REFS`: Ghidra が見落としたポインタを data ブロックでスキャン
-- `INCLUDE_HASH40` / `INCLUDE_HASH40_FULL_SCAN` MOVZ/MOVK パターンの hash40 ロードを検出
-- `HASH40_LABELS_CSV`: ParamLabels.csv のパス (デフォルトは `../SSBU-Dump-Scripts/ParamLabels.csv`)
-- `EXTERNAL_NAME_CSVS`: 関数名の外部 DB (ssbu-decomp 等)．サイズ一致のファジーマッチも対応
+- `INCLUDE_NAME_HINTS`
+- `INCLUDE_BRUTE_REFS`: Ghidraが見落としたポインタをdataブロックでスキャン
+- `INCLUDE_HASH40` / `INCLUDE_HASH40_FULL_SCAN`: MOVZ/MOVKパターンのhash40ロードを検出
+- `HASH40_LABELS_CSV`: ParamLabels.csvのパス (デフォルトは `../SSBU-Dump-Scripts/ParamLabels.csv`)
+- `EXTERNAL_NAME_CSVS`: 関数名の外部DB ([sbergeron42/ssbu-decomp](https://github.com/sbergeron42/ssbu-decomp)など)．サイズ一致のファジーマッチも対応
 - `INCLUDE_EXTERNAL_FUZZY` / `EXTERNAL_FUZZY_TOLERANCE`
 - `CONSUMER_SOURCES`: 消費者プロジェクトのスキャン対象
 - `NRO_BASE_OVERRIDE`: モジュールベース．NoneならGhidraのイメージベースを使う
